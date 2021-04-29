@@ -18,7 +18,7 @@ fun Toolbar() {
     TopAppBar(
         modifier = Modifier
             .height(60.dp),
-        backgroundColor = Color.White
+        backgroundColor = MaterialTheme.colors.background
     ) {
         Text(
             text = "Dashboard",
