@@ -35,6 +35,10 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.0.0-beta01'
     }
 }
 
@@ -55,5 +59,13 @@ dependencies {
     //navigation-component
     api library.navFragment
     api library.navFragmentKtx
+
+    api composeLibrary.ui
+    api composeLibrary.tooling
+    api composeLibrary.foundation
+    api composeLibrary.material
+    api composeLibrary.viewmodel
+    api composeLibrary.livedata
+    api composeLibrary.activity
 
 }
