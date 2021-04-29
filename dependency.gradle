@@ -1,0 +1,45 @@
+ext {
+    appMinSdkVersion = 21
+    appTargetSdkVersion = 30
+    appCompileSdkVersion = 30
+    navVersion = "2.3.1"
+    dataStoreVersion = "1.0.0-alpha02"
+    kotlinVersion = "1.4.10"
+    hilt_version = "2.35.1"
+
+    library = [
+            navFragment       : "androidx.navigation:navigation-fragment-ktx:$navVersion",
+            navFragmentKtx    : "androidx.navigation:navigation-ui-ktx:$navVersion",
+            dataStore         : "androidx.datastore:datastore-preferences:$dataStoreVersion",
+            fragmentKtx       : "androidx.fragment:fragment-ktx:1.3.0-rc01",
+            coreKtx           : "androidx.core:core-ktx:1.3.2",
+            appCompat         : "androidx.activity:activity-ktx: 1.2.0-rc01",
+            appCompatAndroidX : "androidx.appcompat:appcompat:1.3.0-alpha01",
+            constraintlayout  : "androidx.constraintlayout:constraintlayout:2.0.4",
+            lifecycleExtension: "androidx.lifecycle:lifecycle-extensions:2.2.0",
+            jUnitTest         : "junit:junit:4.12",
+            viewModelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0",
+            liveDataKtx       : "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0",
+            material          : "com.google.android.material:material:1.2.1",
+            recyclerView      : "androidx.recyclerview:recyclerview:1.2.0-alpha04",
+            shimer            : "com.facebook.shimmer:shimmer:0.1.0@aar",
+    ]
+    kotlinLibrary = [
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    ]
+
+    coil = [
+            coil: "io.coil-kt:coil:1.0.0",
+    ]
+
+    networking = [
+            retrofit: 'com.squareup.retrofit2:retrofit:2.9.0',
+            gson    : 'com.squareup.retrofit2:converter-gson:2.9.0',
+            okHttp  : 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    ]
+
+    daggerHilt = [
+            main    : "com.google.dagger:hilt-android:$hilt_version",
+            compiler: "com.google.dagger:hilt-compiler:$hilt_version",
+    ]
+}

@@ -1,0 +1,4 @@
+include ':feature:splash'
+include ':core'
+include ':app'
+rootProject.name = "CovidVaccine"
