@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
 import com.himanshoe.core.navigation.Navigator
+import com.himanshoe.core.navigation.event.Event
 import com.himanshoe.core.util.NetworkHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -15,8 +16,8 @@ import javax.inject.Inject
 class SplashViewModel @Inject constructor(networkHelper: NetworkHelper) :
     BaseViewModel(networkHelper) {
 
-    private val _navigateToDashboard = MutableLiveData<Boolean>()
-    val navigateToDashboard: LiveData<Boolean>
+    private val _navigateToDashboard = MutableLiveData<Event<Boolean>>()
+    val navigateToDashboard: LiveData<Event<Boolean>>
         get() = _navigateToDashboard
 
     val navigator = Navigator()
@@ -24,7 +25,7 @@ class SplashViewModel @Inject constructor(networkHelper: NetworkHelper) :
     fun init() {
         viewModelScope.launch {
             delay(2000)
-            _navigateToDashboard.postValue(true)
+            _navigateToDashboard.postValue(Event(true))
         }
     }
 }
