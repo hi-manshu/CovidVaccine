@@ -8,4 +8,6 @@
 
     <include app:graph="@navigation/splash_nav_graph" />
 
+    <include app:graph="@navigation/dashboard_navigation" />
+
 </navigation>

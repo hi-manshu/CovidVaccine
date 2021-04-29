@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dashboard_navigation"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.himanshoe.dashboard.ui.DashboardFragment"
+        android:label="DashboardFragment">
+
+        <deepLink app:uri="covid://dashboard" />
+
+    </fragment>
+</navigation>
