@@ -15,6 +15,6 @@ class ApplicationModule {
 
     @Provides
     fun provideBaseUrl(): String {
-        return "https://cdn-api.co-vin.in/api/"
+        return "https://cdn-api.co-vin.in/"
     }
 }

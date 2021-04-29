@@ -3,7 +3,6 @@ package com.himanshoe.dashboard.component
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
@@ -12,7 +11,6 @@ import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -68,12 +66,6 @@ fun SearchAppBar(
                     unfocusedIndicatorColor = Color.Transparent,
                     cursorColor = MaterialTheme.colors.primary
                 )
-            )
-            Icon(
-                imageVector = Icons.Sharp.Search,
-                modifier= Modifier.wrapContentSize(Alignment.Center),
-                tint = colorResource(id = R.color.ripple_material_light),
-                contentDescription = "search"
             )
         }
     }
