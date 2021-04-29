@@ -1,46 +1,48 @@
 package com.himanshoe.core.design
 
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
+
+
+private val LightThemeColors = lightColors(
+    primary = Blue600,
+    primaryVariant = Blue400,
+    onPrimary = Black2,
+    secondary = Color.White,
+    secondaryVariant = Teal300,
+    error = RedErrorDark,
+    onError = RedErrorLight,
+    background = Grey1,
+    onBackground = Color.Black,
+    surface = Color.White,
+)
+
+private val DarkThemeColors = darkColors(
+    primary = Blue700,
+    primaryVariant = Color.White,
+    onPrimary = Color.White,
+    secondary = Black1,
+    onSecondary = Color.White,
+    error = RedErrorLight,
+    background = Color.Black,
+    onBackground = Color.White,
+    surface = Black1,
+    onSurface = Color.White,
+)
 
 @Composable
 fun AppTheme(
-    colors: BaseColorPalette = themeLightColorPalette(),
-    typography: BaseTypography = BaseTypography(),
-    children: @Composable() () -> Unit
+    darkTheme: Boolean = false,
+    content: @Composable () -> Unit,
 ) {
-    CompositionLocalProvider(
-        LocalDlsColors provides colors,
-        LocalDlsTypography provides typography,
+    MaterialTheme(
+        colors = if (darkTheme) DarkThemeColors else LightThemeColors,
+        typography = BaseTypography,
+        shapes = BaseShape
     ) {
-        MaterialTheme(
-            colors = colors.materialColors,
-            typography = typography.materialTypography
-        ) {
-            children()
-        }
+        content()
     }
 }
-
-object BaseTheme {
-    val colors: BaseColorPalette
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalDlsColors.current
-
-    val typography: BaseTypography
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalDlsTypography.current
-
-    val sizes: BaseSize
-        @Composable
-        @ReadOnlyComposable
-        get() = BaseSize()
-}
-
-internal val LocalDlsColors = staticCompositionLocalOf { themeLightColorPalette() }
-internal val LocalDlsTypography = staticCompositionLocalOf { BaseTypography() }

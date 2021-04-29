@@ -16,6 +16,6 @@ class DashboardFragment : BaseFragment() {
 
     @Composable
     override fun SetupView() {
-    }
 
+    }
 }
