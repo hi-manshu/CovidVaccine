@@ -1,20 +1,26 @@
 package com.himanshoe.splash.ui
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.himanshoe.core.util.setupView
+import androidx.compose.runtime.Composable
+import androidx.fragment.app.viewModels
+import com.himanshoe.core.base.BaseFragment
+import com.himanshoe.splash.component.SplashComponent
+import dagger.hilt.android.AndroidEntryPoint
 
-class SplashFragment : Fragment() {
+@AndroidEntryPoint
+class SplashFragment : BaseFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return setupView {
-        }
+    private val splashViewModel by viewModels<SplashViewModel>()
+
+    override fun setupObserver() {
+
+    }
+
+    override fun init() {
+        splashViewModel.init()
+    }
+
+    @Composable
+    override fun SetupView() {
+        SplashComponent()
     }
 }

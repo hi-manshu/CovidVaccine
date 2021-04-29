@@ -53,7 +53,7 @@ fun themeLightColorPalette(): BaseColorPalette = object : BaseColorPalette {
     )
 }
 
-fun dlsDarkColorPalette(): BaseColorPalette = object : BaseColorPalette {
+fun themeDarkColorPalette(): BaseColorPalette = object : BaseColorPalette {
     override val primary: Color = BaseColors.primary
     override val background: Color = BaseColors.backgroundReverse
     override val basic: Color = BaseColors.basic
