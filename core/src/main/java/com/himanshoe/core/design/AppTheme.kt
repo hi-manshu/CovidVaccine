@@ -25,7 +25,7 @@ fun AppTheme(
     }
 }
 
-object DlsTheme {
+object BaseTheme {
     val colors: BaseColorPalette
         @Composable
         @ReadOnlyComposable
