@@ -51,6 +51,7 @@ dependencies {
     implementation library.navFragmentKtx
     implementation library.liveDataKtx
     implementation library.viewModelKtx
+    implementation library.lottie
     //dagger
     implementation daggerHilt.main
     kapt daggerHilt.compiler

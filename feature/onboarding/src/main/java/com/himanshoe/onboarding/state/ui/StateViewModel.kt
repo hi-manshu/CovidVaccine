@@ -31,6 +31,10 @@ class StateViewModel @Inject constructor(
     val stateReponse: LiveData<StateResponse?>
         get() = _stateReponse
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     fun init() {
         viewModelScope.launch {
             getStatesUseCase.invoke(Unit)
@@ -39,8 +43,12 @@ class StateViewModel @Inject constructor(
                 }
                 .collect { result ->
                     when (result) {
-                        is Status.OnSuccess -> _stateReponse.postValue(result.response)
+                        is Status.OnSuccess -> {
+                            _stateReponse.postValue(result.response)
+                            _loading.postValue(false)
+                        }
                         is Status.OnFailed -> catchError()
+                        is Status.Loading -> _loading.postValue(true)
                     }
                 }
         }
@@ -48,6 +56,7 @@ class StateViewModel @Inject constructor(
 
     private fun catchError() {
         _stateReponse.postValue(null)
+        _loading.postValue(false)
     }
 
     fun saveState(stateId: Int, name: String) {
