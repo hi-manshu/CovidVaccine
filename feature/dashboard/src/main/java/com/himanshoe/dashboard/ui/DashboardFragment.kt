@@ -2,18 +2,14 @@ package com.himanshoe.dashboard.ui
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
-import com.himanshoe.dashboard.component.LocationList
-import com.himanshoe.dashboard.component.SearchAppBar
-import com.himanshoe.dashboard.component.Toolbar
+import com.himanshoe.dashboard.component.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
 
@@ -50,6 +46,7 @@ class DashboardFragment : BaseFragment() {
                         viewModel.onSearch(it)
                     }
                 }
+            }, bottomBar = {
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
                 LocationList(viewModel) {
