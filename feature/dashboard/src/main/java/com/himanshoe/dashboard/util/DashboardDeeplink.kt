@@ -16,3 +16,15 @@ private fun navigateToSettings(): NavigateTo.DeepLink {
 }
 
 fun deepLinkToSettings() = navigateToSettings()
+
+private fun navigateToSearchByPin(): NavigateTo.DeepLink {
+
+    return NavigateTo.DeepLink(
+        "covid://search-by-pin",
+        navOptions {
+            fadeAnimation()
+        }
+    )
+}
+
+fun deepLinkToSearchByPin() = navigateToSearchByPin()

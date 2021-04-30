@@ -10,6 +10,7 @@ import com.himanshoe.core.util.Status
 import com.himanshoe.dashboard.data.request.VaccineLocatorRequest
 import com.himanshoe.dashboard.data.response.VaccineLocatorResponse
 import com.himanshoe.dashboard.domain.GetVaccineLocationUseCase
+import com.himanshoe.dashboard.util.deepLinkToSearchByPin
 import com.himanshoe.dashboard.util.deepLinkToSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
@@ -75,5 +76,9 @@ class DashboardViewModel @Inject constructor(
 
     fun navigateToSettings() {
         navigator.navigate(deepLinkToSettings())
+    }
+
+    fun navigateToSearch() {
+        navigator.navigate(deepLinkToSearchByPin())
     }
 }
