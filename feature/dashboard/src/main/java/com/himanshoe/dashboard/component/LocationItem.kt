@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.himanshoe.dashboard.data.response.Center
 import com.himanshoe.dashboard.data.response.Session
@@ -162,16 +161,18 @@ private fun AddressItem(center: Center, onMapLocationFetch: (Pair<Double, Double
                 )
             }
 
-            Image(
-                modifier = Modifier
-                    .size(30.dp)
-                    .fillMaxWidth(0.08f)
-                    .clickable {
-                        onMapLocationFetch(Pair(center.lat, center.long))
-                    },
-                painter = painterResource(com.himanshoe.dashboard.R.drawable.ic_navigation),
-                contentDescription = "Icon"
-            )
+            if (center.lat != 0.0 || center.long != 0.0) {
+                Image(
+                    modifier = Modifier
+                        .size(30.dp)
+                        .fillMaxWidth(0.08f)
+                        .clickable {
+                            onMapLocationFetch(Pair(center.lat, center.long))
+                        },
+                    painter = painterResource(com.himanshoe.dashboard.R.drawable.ic_navigation),
+                    contentDescription = "Icon"
+                )
+            }
         }
     }
 }
