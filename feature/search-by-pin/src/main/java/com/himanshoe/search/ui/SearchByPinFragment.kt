@@ -8,9 +8,11 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
+import com.himanshoe.search.component.MainSearchDataScreen
 import com.himanshoe.search.component.SearchComponent
 import com.himanshoe.search.component.SearchToolbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 
 @AndroidEntryPoint
 class SearchByPinFragment : BaseFragment() {
@@ -25,6 +27,7 @@ class SearchByPinFragment : BaseFragment() {
 
     }
 
+    @FlowPreview
     @ExperimentalComposeUiApi
     @Composable
     override fun SetupView() {
@@ -33,11 +36,11 @@ class SearchByPinFragment : BaseFragment() {
                 Column {
                     SearchToolbar()
                     SearchComponent {
-
+                        viewModel.onSearch(it)
                     }
                 }
             }) {
-
+            MainSearchDataScreen(viewModel)
         }
     }
 }

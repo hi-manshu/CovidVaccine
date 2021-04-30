@@ -6,6 +6,7 @@ ext {
     dataStoreVersion = "1.0.0-beta01"
     kotlinVersion = "1.4.10"
     hilt_version = "2.35.1"
+    lottieVersion = "1.0.0-beta03-1"
     compose_version = "1.0.0-beta03"
 
     library = [
@@ -24,6 +25,7 @@ ext {
             material          : "com.google.android.material:material:1.2.1",
             recyclerView      : "androidx.recyclerview:recyclerview:1.2.0-alpha04",
             shimer            : "com.facebook.shimmer:shimmer:0.1.0@aar",
+            lottie              : "com.airbnb.android:lottie-compose:$lottieVersion",
     ]
     kotlinLibrary = [
             stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

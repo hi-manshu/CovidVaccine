@@ -55,7 +55,7 @@ fun SearchComponent(
                 singleLine = true,
                 textStyle = MaterialTheme.typography.body1,
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Text,
+                    keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done,
                 ),
                 keyboardActions = KeyboardActions(onDone = {
