@@ -24,7 +24,10 @@ class StateFragment : BaseFragment() {
     }
 
     override fun init() {
-        viewModel.init()
+        viewModel.apply {
+            init()
+            navigator.navigateBy(this@StateFragment)
+        }
     }
 
     @Composable

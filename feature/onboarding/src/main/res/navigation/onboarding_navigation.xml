@@ -12,4 +12,12 @@
         <deepLink app:uri="covid://state" />
 
     </fragment>
+    <fragment
+        android:id="@+id/districtFragment"
+        android:name="com.himanshoe.onboarding.district.ui.DistrictFragment"
+        android:label="DistrictFragment">
+
+        <deepLink app:uri="covid://district" />
+
+    </fragment>
 </navigation>
