@@ -1,5 +1,6 @@
 package com.himanshoe.onboarding.district.ui
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -31,18 +32,17 @@ class DistrictViewModel @Inject constructor(
 
     fun init() {
         viewModelScope.launch {
-            sessionManager.getStateId().collect {
-                districtUseCase.invoke(it)
-                    .catch {
-                        catchError()
+            sessionManager.getStateId()
+            districtUseCase.invoke(sessionManager.getStateId())
+                .catch {
+                    catchError()
+                }
+                .collect { result ->
+                    when (result) {
+                        is Status.OnSuccess -> _districtResponse.postValue(result.response)
+                        is Status.OnFailed -> catchError()
                     }
-                    .collect { result ->
-                        when (result) {
-                            is Status.OnSuccess -> _districtResponse.postValue(result.response)
-                            is Status.OnFailed -> catchError()
-                        }
-                    }
-            }
+                }
         }
     }
 

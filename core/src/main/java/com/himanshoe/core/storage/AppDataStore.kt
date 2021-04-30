@@ -1,28 +1,128 @@
 package com.himanshoe.core.storage
 
 import android.content.Context
-import androidx.datastore.preferences.core.intPreferencesKey
-import com.himanshoe.core.base.datastore.DataStoreProvider
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
+import android.util.Log
+import androidx.datastore.preferences.core.*
+import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.runBlocking
 
-class AppDataStore @Inject constructor(@ApplicationContext context: Context) :
-    DataStoreProvider(context) {
+val Context.dataStore by preferencesDataStore(name = "app-pref")
 
-    private object PreferencesKeys {
-        val STATE_ID = intPreferencesKey("state_id")
-    }
+class AppDataStore {
 
-    override fun prefName(): String {
-        return "app-store"
-    }
+    companion object {
+        private val TAG = AppDataStore::class.simpleName
+        const val STATE = "state"
+        const val DISTRICT = "district"
 
-    suspend fun setStateId(stateId: Int) {
-        setValue(PreferencesKeys.STATE_ID, stateId)
-    }
+        fun getBoolean(
+            context: Context,
+            keyName: String,
+            defaultValue: Boolean = false
+        ): Boolean {
+            val key = booleanPreferencesKey(keyName)
+            val data: Flow<Boolean> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
 
-    suspend fun getStateId(): Flow<Int> {
-        return getValue(PreferencesKeys.STATE_ID, 0)
+        fun setBoolean(context: Context, keyName: String, value: Boolean) {
+            val key = booleanPreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        fun getInt(context: Context, keyName: String, defaultValue: Int = 0): Int {
+            val key = intPreferencesKey(keyName)
+            val data: Flow<Int> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
+
+        fun setInt(context: Context, keyName: String, value: Int) {
+            val key = intPreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        fun getLong(context: Context, keyName: String, defaultValue: Long = 0L): Long {
+            val key = longPreferencesKey(keyName)
+            val data: Flow<Long> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
+
+        fun setLong(context: Context, keyName: String, value: Long) {
+            val key = longPreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        fun getFloat(context: Context, keyName: String, defaultValue: Float = 0f): Float {
+            val key = floatPreferencesKey(keyName)
+            val data: Flow<Float> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
+
+        fun setFloat(context: Context, keyName: String, value: Float) {
+            val key = floatPreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        fun getDouble(
+            context: Context,
+            keyName: String,
+            defaultValue: Double = 0.0
+        ): Double {
+            val key = doublePreferencesKey(keyName)
+            val data: Flow<Double> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
+
+        fun setDouble(context: Context, keyName: String, value: Double) {
+            val key = doublePreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        fun getString(
+            context: Context,
+            keyName: String,
+            defaultValue: String = ""
+        ): String {
+            val key = stringPreferencesKey(keyName)
+            val data: Flow<String> = context.dataStore.data.map {
+                it[key] ?: defaultValue
+            }
+            return getData(data, defaultValue)
+        }
+
+        fun setString(context: Context, keyName: String, value: String) {
+            val key = stringPreferencesKey(keyName)
+            setData(context, key, value)
+        }
+
+        private fun <T> getData(data: Flow<T>, defaultValue: T): T {
+            return runBlocking {
+                try {
+                    return@runBlocking data.first()
+                } catch (e: NoSuchElementException) {
+                    e.message?.let { Log.e(TAG, e.printStackTrace().toString()) }
+                    return@runBlocking defaultValue
+                }
+            }
+        }
+
+        private fun <T> setData(context: Context, key: Preferences.Key<T>, value: T) {
+            runBlocking {
+                context.dataStore.edit { data ->
+                    data[key] = value
+                }
+            }
+        }
     }
 }
