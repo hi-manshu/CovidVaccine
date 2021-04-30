@@ -11,7 +11,7 @@ import com.himanshoe.onboarding.state.ui.StateViewModel
 import java.util.Collections.emptyList
 
 @Composable
-fun StateList(viewModel: StateViewModel, onClick: (Int) -> Unit) {
+fun StateList(viewModel: StateViewModel, onClick: (Int,String) -> Unit) {
 
     val states = viewModel.stateReponse.observeAsState()
 

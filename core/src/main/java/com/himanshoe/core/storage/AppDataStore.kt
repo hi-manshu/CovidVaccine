@@ -14,7 +14,9 @@ class AppDataStore {
     companion object {
         private val TAG = AppDataStore::class.simpleName
         const val STATE = "state"
+        const val STATE_NAME = "state-name"
         const val DISTRICT = "district"
+        const val DISTRICT_NAME = "district-name"
         const val ONBOARDING = "onboarding"
 
         fun getBoolean(

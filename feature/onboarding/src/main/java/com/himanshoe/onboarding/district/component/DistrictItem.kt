@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.district.data.response.District
 
 @Composable
-fun DistrictItem(district: District, onClick: (Int) -> Unit) {
+fun DistrictItem(district: District, onClick: (Int,String) -> Unit) {
     Text(
         text = district.districtName,
         modifier = Modifier
@@ -23,7 +23,7 @@ fun DistrictItem(district: District, onClick: (Int) -> Unit) {
             .padding(16.dp)
             .height(30.dp)
             .padding(top = 2.dp)
-            .clickable { onClick(district.districtId) },
+            .clickable { onClick(district.districtId,district.districtName) },
         textAlign = TextAlign.Justify.apply {
             TextAlign.Center
         },

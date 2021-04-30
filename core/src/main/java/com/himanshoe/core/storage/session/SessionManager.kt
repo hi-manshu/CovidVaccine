@@ -4,7 +4,15 @@ interface SessionManager {
 
     suspend fun saveStateId(stateId: Int)
 
+    suspend fun saveStateName(name:String)
+
+    suspend fun saveDistrictName(name:String)
+
     suspend fun getStateId(): Int
+
+    suspend fun getStateName(): String
+
+    suspend fun getDistrictName(): String
 
     suspend fun saveDistrictId(districtId: Int)
 

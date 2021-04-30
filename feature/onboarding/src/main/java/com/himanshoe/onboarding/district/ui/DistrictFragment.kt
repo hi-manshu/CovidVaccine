@@ -37,8 +37,8 @@ class DistrictFragment : BaseFragment() {
                 }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
-                DistrictList(viewModel) {
-                    viewModel.setDistrict(it)
+                DistrictList(viewModel) {id,name->
+                    viewModel.setDistrict(id,name)
                 }
             }
         }

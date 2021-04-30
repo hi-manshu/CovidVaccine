@@ -51,9 +51,10 @@ class DistrictViewModel @Inject constructor(
         _districtResponse.postValue(null)
     }
 
-    fun setDistrict(districtId: Int) {
+    fun setDistrict(districtId: Int, name: String) {
         viewModelScope.launch {
             sessionManager.saveDistrictId(districtId)
+            sessionManager.saveDistrictName(name)
             sessionManager.isOnboardingDone(true)
             delay(1000)
             navigator.navigate(deepLinkToDashboard())

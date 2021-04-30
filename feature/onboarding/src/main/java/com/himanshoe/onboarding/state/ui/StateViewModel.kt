@@ -1,6 +1,5 @@
 package com.himanshoe.onboarding.state.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -51,9 +50,10 @@ class StateViewModel @Inject constructor(
         _stateReponse.postValue(null)
     }
 
-    fun saveState(stateId: Int) {
+    fun saveState(stateId: Int, name: String) {
         viewModelScope.launch {
             sessionManager.saveStateId(stateId)
+            sessionManager.saveStateName(name)
             delay(2000)
             navigator.navigate(deeplinkToDistrict())
         }
