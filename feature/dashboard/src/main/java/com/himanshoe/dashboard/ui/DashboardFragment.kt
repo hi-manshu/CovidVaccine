@@ -28,7 +28,10 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun init() {
-        viewModel.init()
+        viewModel.apply {
+            init()
+            navigator.navigateBy(this@DashboardFragment)
+        }
     }
 
     @FlowPreview
@@ -38,7 +41,9 @@ class DashboardFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-                    Toolbar()
+                    Toolbar(onSettingsClicked = {
+                        viewModel.navigateToSettings()
+                    })
                     SearchAppBar {
                         viewModel.onSearch(it)
                     }

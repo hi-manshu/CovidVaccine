@@ -1,6 +1,5 @@
-package com.himanshoe.onboarding.district.ui
+package com.himanshoe.settings.ui
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
@@ -8,14 +7,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
-import com.himanshoe.onboarding.district.component.DistrictList
-import com.himanshoe.onboarding.district.component.DistrictToolbar
+import com.himanshoe.settings.component.LabelContent
+import com.himanshoe.settings.component.SettingsToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DistrictFragment : BaseFragment() {
+class SettingsFragment : BaseFragment() {
 
-    private val viewModel by viewModels<DistrictViewModel>()
+    private val viewModel by viewModels<SettingsViewModel>()
 
     override fun setupObserver() {
 
@@ -24,7 +23,7 @@ class DistrictFragment : BaseFragment() {
     override fun init() {
         viewModel.apply {
             init()
-            navigator.navigateBy(this@DistrictFragment)
+            navigator.navigateBy(this@SettingsFragment)
         }
     }
 
@@ -33,13 +32,11 @@ class DistrictFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-                    DistrictToolbar()
+                    SettingsToolbar()
                 }
             }) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                DistrictList(viewModel) {id,name->
-                    viewModel.setDistrict(id,name)
-                }
+            LabelContent(viewModel) {
+                viewModel.gotoStates()
             }
         }
     }

@@ -13,8 +13,24 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
         AppDataStore.setInt(context, AppDataStore.STATE, stateId)
     }
 
+    override suspend fun saveStateName(name: String) {
+        AppDataStore.setString(context, AppDataStore.STATE_NAME, name)
+    }
+
+    override suspend fun saveDistrictName(name: String) {
+        AppDataStore.setString(context, AppDataStore.DISTRICT_NAME, name)
+    }
+
     override suspend fun getStateId(): Int {
         return AppDataStore.getInt(context, AppDataStore.STATE)
+    }
+
+    override suspend fun getStateName(): String {
+        return AppDataStore.getString(context, AppDataStore.STATE_NAME)
+    }
+
+    override suspend fun getDistrictName(): String {
+        return AppDataStore.getString(context, AppDataStore.DISTRICT_NAME)
     }
 
     override suspend fun saveDistrictId(districtId: Int) {

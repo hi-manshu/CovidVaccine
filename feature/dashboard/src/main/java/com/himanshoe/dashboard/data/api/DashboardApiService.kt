@@ -8,7 +8,7 @@ import retrofit2.http.Query
 interface DashboardApiService {
 
     @GET("/api/v2/appointment/sessions/public/calendarByDistrict")
-    suspend fun getListings(
+    suspend fun getLocations(
         @Query("district_id") districtId: String,
         @Query("date") date: String,
     ): Response<VaccineLocatorResponse>

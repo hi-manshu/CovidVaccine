@@ -11,7 +11,7 @@ import com.himanshoe.onboarding.district.ui.DistrictViewModel
 import java.util.Collections.emptyList
 
 @Composable
-fun DistrictList(viewModel: DistrictViewModel, onClick: (Int) -> Unit) {
+fun DistrictList(viewModel: DistrictViewModel, onClick: (Int,String) -> Unit) {
 
     val states = viewModel.districtResponse.observeAsState()
 

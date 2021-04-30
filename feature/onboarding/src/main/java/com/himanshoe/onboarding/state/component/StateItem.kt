@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.state.data.response.State
 
 @Composable
-fun StateItem(state: State, onClick: (Int) -> Unit) {
+fun StateItem(state: State, onClick: (Int,String) -> Unit) {
     Text(
         text = state.stateName,
         modifier = Modifier
@@ -23,7 +23,7 @@ fun StateItem(state: State, onClick: (Int) -> Unit) {
             .padding(16.dp)
             .height(30.dp)
             .padding(top = 2.dp)
-            .clickable { onClick(state.stateId) },
+            .clickable { onClick(state.stateId,state.stateName) },
         textAlign = TextAlign.Justify.apply {
             TextAlign.Center
         },

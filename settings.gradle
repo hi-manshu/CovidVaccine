@@ -4,3 +4,4 @@ include ':app'
 rootProject.name = "CovidVaccine"
 include ':feature:dashboard'
 include ':feature:onboarding'
+include ':feature:settings'
