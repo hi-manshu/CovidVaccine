@@ -38,7 +38,11 @@ fun MainSearchDataScreen(viewModel: SearchByPinViewModel) {
 
         if (location != null) {
             LoadTheLocationList(textState)
+        } else {
+            EmptySearch()
         }
+    } else {
+        EmptySearch()
     }
 }
 
