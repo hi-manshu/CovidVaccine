@@ -28,4 +28,6 @@ This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided 
 
 #### Architecture
 
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/arch-1.jpg">
+
 #### [Click here to connect with me](https://twitter.com/hi_man_shoe)
