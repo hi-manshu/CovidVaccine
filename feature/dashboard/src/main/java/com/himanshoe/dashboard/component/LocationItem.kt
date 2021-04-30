@@ -51,6 +51,7 @@ private fun AgeAndSlots(center: Center) {
         )
 
         Spacer(Modifier.height(1.dp))
+
         if (center.sessions.isNotEmpty()) {
             Text(
                 text = center.sessions[0].minAgeLimit.toString() + " yrs",
@@ -62,7 +63,9 @@ private fun AgeAndSlots(center: Center) {
                 color = Color.Black,
                 fontWeight = FontWeight.SemiBold
             )
+
             Spacer(Modifier.height(20.dp))
+
             LazyRow {
                 items(items = center.sessions[0].slots ?: emptyList(), key = null, {
                     BuildChip(label = it)

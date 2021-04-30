@@ -10,8 +10,8 @@ import com.himanshoe.dashboard.data.request.VaccineLocatorRequest
 import com.himanshoe.dashboard.data.response.VaccineLocatorResponse
 import com.himanshoe.dashboard.domain.GetVaccineLocationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +24,10 @@ class DashboardViewModel @Inject constructor(
     private val _vaccineLocationResponse = MutableLiveData<VaccineLocatorResponse?>()
     val vaccineLocationResponse: LiveData<VaccineLocatorResponse?>
         get() = _vaccineLocationResponse
+
+    private val _searchQuery = MutableLiveData<String>()
+    val searchQuery: LiveData<String>
+        get() = _searchQuery
 
     fun init() {
         viewModelScope.launch {
@@ -43,5 +47,20 @@ class DashboardViewModel @Inject constructor(
 
     private fun catchError() {
         _vaccineLocationResponse.postValue(null)
+    }
+
+    @FlowPreview
+    fun onSearch(searchQuery: String) {
+        viewModelScope.launch {
+            flowOf(searchQuery)
+                .debounce(300)
+                .filter { query ->
+                    return@filter query.isNotEmpty()
+                }
+                .distinctUntilChanged()
+                .collect {
+                    _searchQuery.postValue(it)
+                }
+        }
     }
 }

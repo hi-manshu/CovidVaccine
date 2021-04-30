@@ -1,5 +1,6 @@
 package com.himanshoe.dashboard.ui
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,7 +35,9 @@ class DashboardFragment : BaseFragment() {
             topBar = {
                 Column {
                     Toolbar()
-                    SearchAppBar()
+                    SearchAppBar{
+                        viewModel.onSearch(it)
+                    }
                 }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {

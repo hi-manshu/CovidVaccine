@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 @ExperimentalComposeUiApi
 @Composable
 fun SearchAppBar(
-
+    onQueryChange: (String) -> Unit
 ) {
     Surface(
         modifier = Modifier
@@ -34,6 +34,7 @@ fun SearchAppBar(
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             val textState = remember { mutableStateOf("") }
+            onQueryChange(textState.value)
             val keyboardController = LocalSoftwareKeyboardController.current
 
             TextField(
