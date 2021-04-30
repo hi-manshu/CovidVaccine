@@ -8,6 +8,7 @@
 * Kotlin Coroutines + Flow
 * Jetpack Compose for UI
 * Retrofit for API calls
+* DataStore for storage
 
 #### Work In Progress.
 #### [Click here to connect with me](https://twitter.com/hi_man_shoe)
