@@ -60,6 +60,8 @@ dependencies {
     //navigation-component
     api library.navFragment
     api library.navFragmentKtx
+    //datastore
+    api library.dataStore
 
     api composeLibrary.ui
     api composeLibrary.tooling
