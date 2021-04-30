@@ -38,24 +38,14 @@ fun LocationItem(center: Center, onMapLocationFetch: (Pair<Double, Double>) -> U
 @Composable
 private fun SlotsItem(center: Center) {
 
-    Text(
-        text = "Available Slots",
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, bottom = 2.dp),
 
-        textAlign = TextAlign.Start,
-        style = MaterialTheme.typography.caption,
-        color = Color.Gray,
-        fontWeight = FontWeight.Normal
-    )
     Spacer(modifier = Modifier.height(10.dp))
 
     center.sessions.forEach {
         AgeItem(it)
 
         Text(
-            text = it.date,
+            text = "Available slots for " + it.date,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, top = 2.dp),
