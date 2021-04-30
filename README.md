@@ -1,5 +1,7 @@
 ### Covid Vaccine
 
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/banner.jpg">
+
 This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided by the government.
 
 ### Screenshots
@@ -13,7 +15,9 @@ This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided 
   <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/6.jpg" width="150" height="250">
   <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/7.jpg" width="150" height="250">
 </p>
+
 #### Tech Stack Used
+
 * Kotlin
 * Dagger Hilt
 * Clean Architecture with Modular
@@ -22,6 +26,6 @@ This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided 
 * Retrofit for API calls
 * DataStore for storage
 
-#### Work In Progress.
+#### Architecture
 
 #### [Click here to connect with me](https://twitter.com/hi_man_shoe)
