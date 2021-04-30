@@ -1,4 +1,4 @@
-package com.roomiapp.core.navigator
+package com.himanshoe.core.navigation
 
 import androidx.navigation.NavOptionsBuilder
 import com.himanshoe.core.R
