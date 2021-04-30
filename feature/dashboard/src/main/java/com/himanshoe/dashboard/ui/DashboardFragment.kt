@@ -1,5 +1,6 @@
 package com.himanshoe.dashboard.ui
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
@@ -8,6 +9,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
+import com.himanshoe.dashboard.component.LocationList
 import com.himanshoe.dashboard.component.SearchAppBar
 import com.himanshoe.dashboard.component.Toolbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,7 +37,9 @@ class DashboardFragment : BaseFragment() {
                     SearchAppBar()
                 }
             }) {
-
+            Box(modifier = Modifier.fillMaxSize()) {
+                LocationList(viewModel)
+            }
         }
     }
 }
