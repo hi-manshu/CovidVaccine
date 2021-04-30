@@ -5,12 +5,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
 import com.himanshoe.onboarding.state.component.StateList
+import com.himanshoe.onboarding.state.component.StateToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
+@ExperimentalComposeUiApi
 @AndroidEntryPoint
 class StateFragment : BaseFragment() {
 
@@ -29,7 +32,7 @@ class StateFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-
+                    StateToolbar()
                 }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
