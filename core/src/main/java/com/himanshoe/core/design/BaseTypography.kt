@@ -1,80 +1,86 @@
 package com.himanshoe.core.design
 
 import androidx.compose.material.Typography
-import androidx.compose.runtime.Immutable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.himanshoe.core.R
 
-@Immutable
-data class BaseTypography internal constructor(
-    val headline1: TextStyle = TextStyle(
-        fontSize = 36.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 48.sp
-    ),
+private val QuickSandFontFamily = FontFamily(
+    Font(R.font.quicksand_light, FontWeight.W300),
+    Font(R.font.quicksand_regular, FontWeight.W400),
+    Font(R.font.quicksand_medium, FontWeight.W500),
+    Font(R.font.quicksand_bold, FontWeight.W600)
 
-    val headline2: TextStyle = TextStyle(
-        fontSize = 32.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 40.sp
-    ),
+)
 
-    val headline3: TextStyle = TextStyle(
+val BaseTypography = Typography(
+    h1 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W500,
         fontSize = 30.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 40.sp
     ),
-
-    val headline4: TextStyle = TextStyle(
-        fontSize = 26.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 32.sp
+    h2 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W500,
+        fontSize = 24.sp,
     ),
-
-    val headline5: TextStyle = TextStyle(
-        fontSize = 22.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 32.sp
+    h3 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W500,
+        fontSize = 20.sp,
     ),
-
-    val headline6: TextStyle = TextStyle(
+    h4 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
         fontSize = 18.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 24.sp
     ),
-
-    val subtitle: TextStyle = TextStyle(
-        fontSize = 15.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 24.sp
+    h5 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = 16.sp,
     ),
-
-    val paragraph: TextStyle = TextStyle(
-        fontSize = 15.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 20.sp
-    ),
-
-    val caption: TextStyle = TextStyle(
-        fontSize = 12.sp,
-        fontWeight = FontWeight.Normal,
-        lineHeight = 16.sp
-    ),
-
-    val label: TextStyle = TextStyle(
-        fontSize = 12.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 16.sp
-    ),
-
-    val button: TextStyle = TextStyle(
+    h6 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
         fontSize = 14.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 16.sp
     ),
-
-    val materialTypography: Typography = Typography(
-        body1 = paragraph
+    subtitle1 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W500,
+        fontSize = 16.sp,
+    ),
+    subtitle2 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = 14.sp,
+    ),
+    body1 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp
+    ),
+    body2 = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontSize = 14.sp
+    ),
+    button = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = 15.sp,
+        color = Color.White
+    ),
+    caption = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
+    ),
+    overline = TextStyle(
+        fontFamily = QuickSandFontFamily,
+        fontWeight = FontWeight.W400,
+        fontSize = 12.sp
     )
 )

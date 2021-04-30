@@ -1,6 +1,6 @@
 package com.himanshoe.core.di
 
-import androidx.viewbinding.BuildConfig
+import com.himanshoe.core.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
