@@ -1,6 +1,8 @@
 package com.himanshoe.dashboard.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -12,22 +14,23 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.himanshoe.dashboard.data.response.Center
+import com.himanshoe.dashboard.data.response.Session
 
 @Composable
-fun LocationItem(center: Center) {
+fun LocationItem(center: Center, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
     Card(modifier = Modifier.padding(8.dp)) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            AddressItem(center)
+            AddressItem(center, onMapLocationFetch)
             TimingItem(center)
-            AgeItem(center)
             SlotsItem(center)
         }
     }
@@ -35,6 +38,7 @@ fun LocationItem(center: Center) {
 
 @Composable
 private fun SlotsItem(center: Center) {
+
     Text(
         text = "Available Slots",
         modifier = Modifier
@@ -49,6 +53,8 @@ private fun SlotsItem(center: Center) {
     Spacer(modifier = Modifier.height(10.dp))
 
     center.sessions.forEach {
+        AgeItem(it)
+
         Text(
             text = it.date,
             modifier = Modifier
@@ -74,7 +80,7 @@ private fun SlotsItem(center: Center) {
 }
 
 @Composable
-private fun AgeItem(center: Center) {
+private fun AgeItem(session: Session) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,65 +99,80 @@ private fun AgeItem(center: Center) {
 
         Spacer(Modifier.height(1.dp))
 
-        if (center.sessions.isNotEmpty()) {
-            Text(
-                text = center.sessions[0].minAgeLimit.toString() + " yrs",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 2.dp),
-                textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.body2,
-                color = Color.Black,
-                fontWeight = FontWeight.SemiBold
-            )
+        Text(
+            text = session.minAgeLimit.toString() + " yrs",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.body2,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
 
-            Spacer(Modifier.height(10.dp))
-        }
+        Spacer(Modifier.height(10.dp))
     }
 }
 
 @Composable
-private fun AddressItem(center: Center) {
-    Column(
+private fun AddressItem(center: Center, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .background(MaterialTheme.colors.primary)
             .padding(16.dp)
     ) {
-        Text(
-            text = center.name,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 4.dp),
-            textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.h5,
-            color = Color.White,
-            fontWeight = FontWeight.Bold
-        )
+        Row(Modifier.fillMaxWidth()) {
+            Column(
+                modifier = Modifier.fillMaxWidth(0.92f)
+            ) {
+                Text(
+                    text = center.name,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 4.dp),
+                    textAlign = TextAlign.Start,
+                    style = MaterialTheme.typography.h5,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
 
-        Spacer(Modifier.height(1.dp))
+                Spacer(Modifier.height(1.dp))
 
-        Text(
-            text = """${center.blockName} - ${center.districtName}""",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 4.dp),
-            textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.caption,
-            color = Color.White
-        )
+                Text(
+                    text = """${center.blockName} - ${center.districtName}""",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 4.dp),
+                    textAlign = TextAlign.Start,
+                    style = MaterialTheme.typography.caption,
+                    color = Color.White
+                )
 
-        Spacer(Modifier.height(1.dp))
+                Spacer(Modifier.height(1.dp))
 
-        Text(
-            text = """${center.stateName} - ${center.pincode}""",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 4.dp),
-            textAlign = TextAlign.Start,
-            style = MaterialTheme.typography.caption,
-            color = Color.White
-        )
+                Text(
+                    text = """${center.stateName} - ${center.pincode}""",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 4.dp),
+                    textAlign = TextAlign.Start,
+                    style = MaterialTheme.typography.caption,
+                    color = Color.White
+                )
+            }
+
+            Image(
+                modifier = Modifier
+                    .size(30.dp)
+                    .fillMaxWidth(0.08f)
+                    .clickable {
+                        onMapLocationFetch(Pair(center.lat, center.long))
+                    },
+                painter = painterResource(com.himanshoe.dashboard.R.drawable.ic_navigation),
+                contentDescription = "Icon"
+            )
+        }
     }
 }
 
@@ -207,11 +228,4 @@ private fun BuildChip(label: String) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun DummyPreview() {
-    val center = Center(name = "Gouranga TE", blockName = "Himanshu")
-    LocationItem(center = center)
 }
