@@ -31,6 +31,10 @@ class DistrictViewModel @Inject constructor(
     val districtResponse: LiveData<DistrictResponse?>
         get() = _districtResponse
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean>
+        get() = _loading
+
     fun init() {
         viewModelScope.launch {
             sessionManager.getStateId()
@@ -40,8 +44,13 @@ class DistrictViewModel @Inject constructor(
                 }
                 .collect { result ->
                     when (result) {
-                        is Status.OnSuccess -> _districtResponse.postValue(result.response)
+                        is Status.OnSuccess -> {
+                            _districtResponse.postValue(result.response)
+                            _loading.postValue(false)
+                        }
                         is Status.OnFailed -> catchError()
+                        is Status.Loading -> _loading.postValue(true)
+
                     }
                 }
         }
@@ -49,6 +58,7 @@ class DistrictViewModel @Inject constructor(
 
     private fun catchError() {
         _districtResponse.postValue(null)
+        _loading.postValue(false)
     }
 
     fun setDistrict(districtId: Int, name: String) {

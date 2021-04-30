@@ -20,8 +20,8 @@ suspend fun <T : Any> performNetworkCall(
     var delayDuration = 1000L
     val delayFactor = 2
     return flow {
+        emit(Status.Loading)
         val response = networkApiCall()
-        Log.d("SDfsdfsdfsdf",response.code().toString())
         if (response.isSuccessful) {
             response.body()?.let { emit(Status.OnSuccess(it)) } ?: emit(
                 Status.OnFailed(

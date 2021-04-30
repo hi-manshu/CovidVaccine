@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/search_navigation"
+    app:startDestination="@id/searchByPinFragment">
+
+    <fragment
+        android:id="@+id/searchByPinFragment"
+        android:name="com.himanshoe.search.ui.SearchByPinFragment"
+        android:label="SearchByPinFragment">
+        <deepLink app:uri="covid://search-by-pin" />
+    </fragment>
+</navigation>

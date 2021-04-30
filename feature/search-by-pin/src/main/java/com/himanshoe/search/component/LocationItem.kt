@@ -1,4 +1,4 @@
-package com.himanshoe.dashboard.component
+package com.himanshoe.search.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,17 +18,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.himanshoe.dashboard.data.response.Center
-import com.himanshoe.dashboard.data.response.Session
+import com.himanshoe.search.data.response.Center
+import com.himanshoe.search.data.response.Session
 
 @Composable
-fun LocationItem(center: Center, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
+fun LocationItem(center: Center) {
     Card(modifier = Modifier.padding(8.dp)) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            AddressItem(center, onMapLocationFetch)
+            AddressItem(center)
             TimingItem(center)
             SlotsItem(center)
         }
@@ -104,7 +104,7 @@ private fun AgeItem(session: Session) {
 }
 
 @Composable
-private fun AddressItem(center: Center, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
+private fun AddressItem(center: Center) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -151,17 +151,16 @@ private fun AddressItem(center: Center, onMapLocationFetch: (Pair<Double, Double
                 )
             }
 
-            if (center.lat != 0.0 || center.long != 0.0) {
-                Image(
-                    modifier = Modifier
-                        .size(30.dp)
-                        .fillMaxWidth(0.08f)
-                        .clickable {
-                            onMapLocationFetch(Pair(center.lat, center.long))
-                        },
-                    painter = painterResource(com.himanshoe.dashboard.R.drawable.ic_navigation),
-                    contentDescription = "Icon"
-                )
+            if (center.lat != 0 || center.long != 0) {
+//                Image(
+//                    modifier = Modifier
+//                        .size(30.dp)
+//                        .fillMaxWidth(0.08f)
+//                        .clickable {
+//                        },
+//                  painter = painterResource(com.himanshoe.dashboard.R.drawable.ic_navigation),
+//                    contentDescription = "Icon"
+//                )
             }
         }
     }

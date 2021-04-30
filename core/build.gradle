@@ -70,6 +70,8 @@ dependencies {
     api composeLibrary.viewmodel
     api composeLibrary.livedata
     api composeLibrary.activity
+    implementation library.lottie
+
     //coroutines
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7'
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1'
