@@ -25,8 +25,9 @@ class SettingsFragment : BaseFragment() {
             topBar = {
                 Column {
                     SettingsToolbar()
-
                 }
-            }) {}
+            }) {
+
+        }
     }
 }
