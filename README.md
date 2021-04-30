@@ -1,6 +1,11 @@
 ### Covid Vaccine
  This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided by the government.
  
+### Screenshots
+<p align="center">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/1.jpg" width="350">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/2.jpg" width="350">
+</p>
 #### Tech Stack Used
 * Kotlin
 * Dagger Hilt
