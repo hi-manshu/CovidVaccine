@@ -36,7 +36,9 @@ class StateFragment : BaseFragment() {
                 }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
-                StateList(viewModel)
+                StateList(viewModel) {
+                    viewModel.saveState(it)
+                }
             }
         }
     }

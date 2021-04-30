@@ -11,7 +11,7 @@ import com.himanshoe.onboarding.state.ui.StateViewModel
 import java.util.Collections.emptyList
 
 @Composable
-fun StateList(viewModel: StateViewModel) {
+fun StateList(viewModel: StateViewModel, onClick: (Int) -> Unit) {
 
     val states = viewModel.stateReponse.observeAsState()
 
@@ -20,7 +20,7 @@ fun StateList(viewModel: StateViewModel) {
             .fillMaxHeight()
     ) {
         items(items = states.value?.states ?: emptyList(), null, {
-            StateItem(it)
+            StateItem(it, onClick)
             Divider()
         })
     }

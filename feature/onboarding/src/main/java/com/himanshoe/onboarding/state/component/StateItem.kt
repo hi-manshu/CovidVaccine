@@ -1,5 +1,6 @@
 package com.himanshoe.onboarding.state.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -14,14 +15,15 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.state.data.response.State
 
 @Composable
-fun StateItem(state: State) {
+fun StateItem(state: State, onClick: (Int) -> Unit) {
     Text(
         text = state.stateName,
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
             .height(30.dp)
-            .padding(top = 2.dp),
+            .padding(top = 2.dp)
+            .clickable { onClick(state.stateId) },
         textAlign = TextAlign.Justify.apply {
             TextAlign.Center
         },

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
+import com.himanshoe.core.navigation.Navigator
+import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
 import com.himanshoe.core.util.Status
 import com.himanshoe.onboarding.state.data.response.StateResponse
@@ -17,8 +19,11 @@ import javax.inject.Inject
 @HiltViewModel
 class StateViewModel @Inject constructor(
     networkHelper: NetworkHelper,
-    private val getStatesUseCase: GetStatesUseCase
+    private val getStatesUseCase: GetStatesUseCase,
+    private val sessionManager: SessionManager
 ) : BaseViewModel(networkHelper) {
+
+    val navigator = Navigator()
 
     private val _stateReponse = MutableLiveData<StateResponse?>()
     val stateReponse: LiveData<StateResponse?>
@@ -41,5 +46,11 @@ class StateViewModel @Inject constructor(
 
     private fun catchError() {
         _stateReponse.postValue(null)
+    }
+
+    fun saveState(stateId: Int) {
+        viewModelScope.launch {
+            sessionManager.saveStateId(stateId)
+        }
     }
 }
