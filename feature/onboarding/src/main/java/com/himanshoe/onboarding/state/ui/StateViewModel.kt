@@ -52,8 +52,10 @@ class StateViewModel @Inject constructor(
 
     fun saveState(stateId: Int, name: String) {
         viewModelScope.launch {
-            sessionManager.saveStateId(stateId)
-            sessionManager.saveStateName(name)
+            sessionManager.apply {
+                saveStateId(stateId)
+                saveStateName(name)
+            }
             delay(2000)
             navigator.navigate(deeplinkToDistrict())
         }

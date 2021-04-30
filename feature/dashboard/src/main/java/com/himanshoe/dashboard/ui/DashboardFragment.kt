@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -31,6 +32,7 @@ class DashboardFragment : BaseFragment() {
         viewModel.init()
     }
 
+    @ExperimentalMaterialApi
     @FlowPreview
     @Composable
     @ExperimentalComposeUiApi
