@@ -5,13 +5,13 @@ This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided 
 ### Screenshots
 
 <p align="center">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/1.jpg" width="350" height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/2.jpg" width="350"height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/3.jpg" width="350"height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/4.jpg" width="350"height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/5.jpg" width="350"height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/6.jpg" width="350"height="400">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/7.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/1.jpg" width="250" height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/2.jpg" width="250"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/3.jpg" width="250"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/4.jpg" width="250"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/5.jpg" width="250"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/6.jpg" width="250"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/7.jpg" width="250"height="400">
 </p>
 #### Tech Stack Used
 * Kotlin
