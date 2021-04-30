@@ -1,10 +1,17 @@
 ### Covid Vaccine
- This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided by the government.
- 
+
+This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided by the government.
+
 ### Screenshots
+
 <p align="center">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/1.jpg" width="350">
-  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/2.jpg" width="350">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/1.jpg" width="350" height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/2.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/3.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/4.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/5.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/6.jpg" width="350"height="400">
+  <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/7.jpg" width="350"height="400">
 </p>
 #### Tech Stack Used
 * Kotlin
@@ -16,4 +23,5 @@
 * DataStore for storage
 
 #### Work In Progress.
+
 #### [Click here to connect with me](https://twitter.com/hi_man_shoe)
