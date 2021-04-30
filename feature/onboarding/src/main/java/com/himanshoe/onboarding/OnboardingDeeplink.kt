@@ -1,8 +1,20 @@
-package com.himanshoe.splash.util
+package com.himanshoe.onboarding
 
 import androidx.navigation.navOptions
 import com.himanshoe.core.navigation.NavigateTo
 import com.himanshoe.core.navigation.fadeAnimation
+
+private fun navigateToDistrict(): NavigateTo.DeepLink {
+
+    return NavigateTo.DeepLink(
+        "covid://district",
+        navOptions {
+            fadeAnimation()
+        }
+    )
+}
+
+fun deeplinkToDistrict() = navigateToDistrict()
 
 private fun navigateToDashboard(): NavigateTo.DeepLink {
 
@@ -15,15 +27,3 @@ private fun navigateToDashboard(): NavigateTo.DeepLink {
 }
 
 fun deepLinkToDashboard() = navigateToDashboard()
-
-private fun navigateToState(): NavigateTo.DeepLink {
-
-    return NavigateTo.DeepLink(
-        "covid://state",
-        navOptions {
-            fadeAnimation()
-        }
-    )
-}
-
-fun deepLinkToState() = navigateToState()

@@ -1,20 +1,22 @@
 package com.himanshoe.splash.ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
 import com.himanshoe.core.navigation.Navigator
-import com.himanshoe.core.navigation.event.Event
+import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
 import com.himanshoe.splash.util.deepLinkToDashboard
+import com.himanshoe.splash.util.deepLinkToState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel @Inject constructor(networkHelper: NetworkHelper) :
+class SplashViewModel @Inject constructor(
+    networkHelper: NetworkHelper,
+    private val sessionManager: SessionManager
+) :
     BaseViewModel(networkHelper) {
 
     val navigator = Navigator()
@@ -22,7 +24,11 @@ class SplashViewModel @Inject constructor(networkHelper: NetworkHelper) :
     fun init() {
         viewModelScope.launch {
             delay(2000)
-            navigator.navigate(deepLinkToDashboard())
+            if (sessionManager.isOnboardingDone()) {
+                navigator.navigate(deepLinkToDashboard())
+            } else {
+                navigator.navigate(deepLinkToState())
+            }
         }
     }
 }

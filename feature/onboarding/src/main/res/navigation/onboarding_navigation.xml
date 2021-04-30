@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/onboarding_navigation"
+    app:startDestination="@id/stateFragment">
+
+    <fragment
+        android:id="@+id/stateFragment"
+        android:name="com.himanshoe.onboarding.state.ui.StateFragment"
+        android:label="StateFragment">
+
+        <deepLink app:uri="covid://state" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/districtFragment"
+        android:name="com.himanshoe.onboarding.district.ui.DistrictFragment"
+        android:label="DistrictFragment">
+
+        <deepLink app:uri="covid://district" />
+
+    </fragment>
+</navigation>

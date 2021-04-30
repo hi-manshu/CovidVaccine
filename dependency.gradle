@@ -3,7 +3,7 @@ ext {
     appTargetSdkVersion = 30
     appCompileSdkVersion = 30
     navVersion = "2.3.1"
-    dataStoreVersion = "1.0.0-alpha02"
+    dataStoreVersion = "1.0.0-beta01"
     kotlinVersion = "1.4.10"
     hilt_version = "2.35.1"
     compose_version = "1.0.0-beta03"

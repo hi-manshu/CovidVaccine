@@ -45,7 +45,6 @@ dependencies {
 
     implementation kotlinLibrary.stdlib
     implementation library.coreKtx
-    implementation coil.coil
     implementation library.appCompat
     implementation library.constraintlayout
     implementation library.navFragment

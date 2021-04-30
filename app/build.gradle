@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation project(':core')
+    implementation project(':feature:onboarding')
     implementation project(':feature:splash')
     implementation project(':feature:dashboard')
 
