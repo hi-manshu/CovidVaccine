@@ -13,7 +13,7 @@ import com.himanshoe.dashboard.ui.DashboardViewModel
 import java.util.*
 
 @Composable
-fun LocationList(viewModel: DashboardViewModel) {
+fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
     val searchQuery = viewModel.searchQuery.observeAsState()
 
     val locations = viewModel.vaccineLocationResponse.observeAsState()
@@ -33,7 +33,7 @@ fun LocationList(viewModel: DashboardViewModel) {
         items(items = textState.value.sortedBy {
             it.name
         } ?: emptyList(), key = null, {
-            LocationItem(it)
+            LocationItem(it,onMapLocationFetch)
         })
     }
 }

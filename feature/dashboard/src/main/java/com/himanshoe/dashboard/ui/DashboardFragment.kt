@@ -1,5 +1,7 @@
 package com.himanshoe.dashboard.ui
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +16,7 @@ import com.himanshoe.dashboard.component.SearchAppBar
 import com.himanshoe.dashboard.component.Toolbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
+
 
 @AndroidEntryPoint
 class DashboardFragment : BaseFragment() {
@@ -42,8 +45,17 @@ class DashboardFragment : BaseFragment() {
                 }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
-                LocationList(viewModel)
+                LocationList(viewModel) {
+                    openMaps(it)
+                }
             }
         }
+    }
+
+    private fun openMaps(latLong: Pair<Double, Double>) {
+        val address = latLong.first.toString() + "," + latLong.second.toString()
+        val url = "https://www.google.com/maps/search/?api=1&query=$address"
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
     }
 }
