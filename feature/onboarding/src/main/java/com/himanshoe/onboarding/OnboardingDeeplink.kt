@@ -8,9 +8,6 @@ private fun navigateToDistrict(): NavigateTo.DeepLink {
 
     return NavigateTo.DeepLink(
         "covid://district",
-        navOptions {
-            fadeAnimation()
-        }
     )
 }
 
@@ -21,6 +18,7 @@ private fun navigateToDashboard(): NavigateTo.DeepLink {
     return NavigateTo.DeepLink(
         "covid://dashboard",
         navOptions {
+            popUpTo(R.id.districtFragment) { inclusive = true }
             fadeAnimation()
         }
     )

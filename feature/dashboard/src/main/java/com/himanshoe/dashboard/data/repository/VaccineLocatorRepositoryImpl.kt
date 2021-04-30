@@ -13,7 +13,7 @@ class VaccineLocatorRepositoryImpl @Inject constructor(val dashboardApiService: 
 
     override suspend fun getVaccineLocations(vaccineLocatorRequest: VaccineLocatorRequest): Flow<Status<VaccineLocatorResponse>> {
         return performNetworkCall {
-            dashboardApiService.getListings(
+            dashboardApiService.getLocations(
                 vaccineLocatorRequest.districtId,
                 vaccineLocatorRequest.date
             )
