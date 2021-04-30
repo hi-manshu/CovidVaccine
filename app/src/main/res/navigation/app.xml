@@ -12,4 +12,6 @@
 
     <include app:graph="@navigation/onboarding_navigation" />
 
+    <include app:graph="@navigation/settings_navigation" />
+
 </navigation>

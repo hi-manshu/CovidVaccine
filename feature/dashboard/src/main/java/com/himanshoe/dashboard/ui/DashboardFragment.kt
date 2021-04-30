@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -29,10 +28,12 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun init() {
-        viewModel.init()
+        viewModel.apply {
+            init()
+            navigator.navigateBy(this@DashboardFragment)
+        }
     }
 
-    @ExperimentalMaterialApi
     @FlowPreview
     @Composable
     @ExperimentalComposeUiApi
@@ -40,7 +41,9 @@ class DashboardFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-                    Toolbar()
+                    Toolbar(onSettingsClicked = {
+                        viewModel.navigateToSettings()
+                    })
                     SearchAppBar {
                         viewModel.onSearch(it)
                     }

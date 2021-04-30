@@ -10,6 +10,7 @@ import com.himanshoe.core.util.Status
 import com.himanshoe.dashboard.data.request.VaccineLocatorRequest
 import com.himanshoe.dashboard.data.response.VaccineLocatorResponse
 import com.himanshoe.dashboard.domain.GetVaccineLocationUseCase
+import com.himanshoe.dashboard.util.deepLinkToSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
@@ -22,6 +23,8 @@ class DashboardViewModel @Inject constructor(
     private val getVaccineLocationUseCase: GetVaccineLocationUseCase,
     private val sessionManager: SessionManager
 ) : BaseViewModel(networkHelper) {
+
+    val navigator = com.himanshoe.core.navigation.Navigator()
 
     private val _vaccineLocationResponse = MutableLiveData<VaccineLocatorResponse?>()
     val vaccineLocationResponse: LiveData<VaccineLocatorResponse?>
@@ -68,5 +71,9 @@ class DashboardViewModel @Inject constructor(
                     _searchQuery.postValue(it)
                 }
         }
+    }
+
+    fun navigateToSettings() {
+        navigator.navigate(deepLinkToSettings())
     }
 }
