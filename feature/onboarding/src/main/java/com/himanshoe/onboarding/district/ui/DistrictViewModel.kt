@@ -1,6 +1,5 @@
 package com.himanshoe.onboarding.district.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,9 +8,11 @@ import com.himanshoe.core.navigation.Navigator
 import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
 import com.himanshoe.core.util.Status
+import com.himanshoe.onboarding.deepLinkToDashboard
 import com.himanshoe.onboarding.district.data.response.DistrictResponse
 import com.himanshoe.onboarding.district.domain.GetListOfDistrictUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -50,4 +51,12 @@ class DistrictViewModel @Inject constructor(
         _districtResponse.postValue(null)
     }
 
+    fun setDistrict(districtId: Int) {
+        viewModelScope.launch {
+            sessionManager.saveDistrictId(districtId)
+            sessionManager.isOnboardingDone(true)
+            delay(1000)
+            navigator.navigate(deepLinkToDashboard())
+        }
+    }
 }

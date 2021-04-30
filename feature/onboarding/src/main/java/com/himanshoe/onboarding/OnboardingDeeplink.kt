@@ -15,3 +15,15 @@ private fun navigateToDistrict(): NavigateTo.DeepLink {
 }
 
 fun deeplinkToDistrict() = navigateToDistrict()
+
+private fun navigateToDashboard(): NavigateTo.DeepLink {
+
+    return NavigateTo.DeepLink(
+        "covid://dashboard",
+        navOptions {
+            fadeAnimation()
+        }
+    )
+}
+
+fun deepLinkToDashboard() = navigateToDashboard()

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
+import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
 import com.himanshoe.core.util.Status
 import com.himanshoe.dashboard.data.request.VaccineLocatorRequest
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     networkHelper: NetworkHelper,
-    private val getVaccineLocationUseCase: GetVaccineLocationUseCase
+    private val getVaccineLocationUseCase: GetVaccineLocationUseCase,
+    private val sessionManager: SessionManager
 ) : BaseViewModel(networkHelper) {
 
     private val _vaccineLocationResponse = MutableLiveData<VaccineLocatorResponse?>()
@@ -31,7 +33,11 @@ class DashboardViewModel @Inject constructor(
 
     fun init() {
         viewModelScope.launch {
-            getVaccineLocationUseCase.invoke(VaccineLocatorRequest("53", "31-03-2021"))
+            val request = VaccineLocatorRequest(
+                sessionManager.getDistrictId().toString(),
+                sessionManager.getCurrentDate()
+            )
+            getVaccineLocationUseCase.invoke(request)
                 .catch {
                     catchError()
                 }

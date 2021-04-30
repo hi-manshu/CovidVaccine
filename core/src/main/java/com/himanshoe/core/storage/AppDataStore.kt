@@ -15,6 +15,7 @@ class AppDataStore {
         private val TAG = AppDataStore::class.simpleName
         const val STATE = "state"
         const val DISTRICT = "district"
+        const val ONBOARDING = "onboarding"
 
         fun getBoolean(
             context: Context,
