@@ -11,7 +11,9 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.himanshoe.core.design.medium
@@ -40,9 +42,11 @@ fun Toolbar() {
             Text(
                 text = "Dashboard",
                 modifier = Modifier
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .alpha(0.6f),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h3
+                style = MaterialTheme.typography.h3,
+                fontWeight = FontWeight.SemiBold,
             )
             Image(
                 modifier = Modifier

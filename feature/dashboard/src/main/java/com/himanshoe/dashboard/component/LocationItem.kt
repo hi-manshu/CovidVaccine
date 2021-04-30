@@ -27,13 +27,54 @@ fun LocationItem(center: Center) {
         ) {
             AddressItem(center)
             TimingItem(center)
-            AgeAndSlots(center)
+            AgeItem(center)
+            SlotsItem(center)
         }
     }
 }
 
 @Composable
-private fun AgeAndSlots(center: Center) {
+private fun SlotsItem(center: Center) {
+    Text(
+        text = "Available Slots",
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, bottom = 2.dp),
+
+        textAlign = TextAlign.Start,
+        style = MaterialTheme.typography.caption,
+        color = Color.Gray,
+        fontWeight = FontWeight.Normal
+    )
+    Spacer(modifier = Modifier.height(10.dp))
+
+    center.sessions.forEach {
+        Text(
+            text = it.date,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, top = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.body2,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
+
+        Spacer(Modifier.height(10.dp))
+
+        LazyRow {
+            items(items = it.slots, key = null, {
+                BuildChip(label = it)
+            })
+        }
+    }
+
+    Spacer(modifier = Modifier.height(10.dp))
+
+}
+
+@Composable
+private fun AgeItem(center: Center) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -64,13 +105,7 @@ private fun AgeAndSlots(center: Center) {
                 fontWeight = FontWeight.SemiBold
             )
 
-            Spacer(Modifier.height(20.dp))
-
-            LazyRow {
-                items(items = center.sessions[0].slots ?: emptyList(), key = null, {
-                    BuildChip(label = it)
-                })
-            }
+            Spacer(Modifier.height(10.dp))
         }
     }
 }
@@ -125,7 +160,7 @@ private fun TimingItem(center: Center) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(start = 16.dp, top = 16.dp, end = 16.dp)
     ) {
         Text(
             text = "Timing",
@@ -151,7 +186,7 @@ private fun TimingItem(center: Center) {
             fontWeight = FontWeight.SemiBold
         )
 
-        Spacer(Modifier.height(20.dp))
+        Spacer(Modifier.height(10.dp))
 
     }
 }
