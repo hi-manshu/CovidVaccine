@@ -39,14 +39,15 @@ class DashboardFragment : BaseFragment() {
                 Column {
                     Toolbar(onSettingsClicked = {
                         viewModel.navigateToSettings()
-                    }, onSearchClicked = {
-                        viewModel.navigateToSearch()
                     })
                     SearchAppBar {
                         viewModel.onSearch(it)
                     }
                 }
             }, bottomBar = {
+                InstantSearch {
+                    viewModel.navigateToSearch()
+                }
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
                 LocationList(viewModel) {

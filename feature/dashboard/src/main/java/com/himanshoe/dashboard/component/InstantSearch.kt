@@ -19,10 +19,10 @@ import com.himanshoe.core.navigation.event.consume
 import com.himanshoe.dashboard.ui.DashboardViewModel
 
 @Composable
-fun ChangeDate( onChangeDate: () -> Unit) {
+fun InstantSearch( triggerSearch: () -> Unit) {
 
     OutlinedButton(
-        onClick = { onChangeDate() },
+        onClick = { triggerSearch() },
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentSize(
@@ -32,7 +32,7 @@ fun ChangeDate( onChangeDate: () -> Unit) {
             .clip(CircleShape)
     ) {
         Text(
-            text = "Change Date",
+            text = "Instant Search",
             style = MaterialTheme.typography.body1,
             color = Color.Black,
             fontWeight = FontWeight.Medium

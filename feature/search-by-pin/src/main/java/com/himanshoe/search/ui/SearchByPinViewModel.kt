@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
+import com.himanshoe.core.navigation.NavigateTo
 import com.himanshoe.core.navigation.Navigator
 import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
@@ -69,5 +70,9 @@ class SearchByPinViewModel @Inject constructor(
 
     private fun catchError() {
         _locationResponse.postValue(null)
+    }
+
+    fun goBack() {
+        navigator.navigate(NavigateTo.Back)
     }
 }

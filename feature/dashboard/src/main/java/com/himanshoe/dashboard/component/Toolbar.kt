@@ -18,7 +18,7 @@ import com.himanshoe.core.design.medium
 import com.himanshoe.dashboard.R
 
 @Composable
-fun Toolbar(onSettingsClicked: () -> Unit, onSearchClicked: () -> Unit) {
+fun Toolbar(onSettingsClicked: () -> Unit) {
     TopAppBar(
         modifier = Modifier
             .height(60.dp),
@@ -44,10 +44,7 @@ fun Toolbar(onSettingsClicked: () -> Unit, onSearchClicked: () -> Unit) {
                 text = "Dashboard",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .alpha(0.6f)
-                    .clickable {
-                        onSearchClicked()
-                    },
+                    .alpha(0.6f),
                 textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.h3,
                 fontWeight = FontWeight.SemiBold,

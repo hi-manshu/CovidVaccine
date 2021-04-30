@@ -32,7 +32,9 @@ class SettingsFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-                    SettingsToolbar()
+                    SettingsToolbar {
+                        viewModel.goBack()
+                    }
                 }
             }) {
             LabelContent(viewModel) {

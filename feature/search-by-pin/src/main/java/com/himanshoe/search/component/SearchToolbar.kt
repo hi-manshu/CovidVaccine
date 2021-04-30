@@ -1,5 +1,6 @@
 package com.himanshoe.search.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.core.design.medium
 
 @Composable
-fun SearchToolbar() {
+fun SearchToolbar(onCancel: () -> Unit) {
     TopAppBar(
         modifier = Modifier
             .height(60.dp),
@@ -34,7 +35,8 @@ fun SearchToolbar() {
             Icon(
                 imageVector = Icons.Sharp.Close,
                 tint = colorResource(id = androidx.compose.material.R.color.androidx_core_secondary_text_default_material_light),
-                contentDescription = "cancel"
+                contentDescription = "cancel",
+                modifier = Modifier.clickable { onCancel() }
             )
             Text(
                 text = "Search",

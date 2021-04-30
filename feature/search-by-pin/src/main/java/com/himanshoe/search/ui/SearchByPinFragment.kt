@@ -24,7 +24,7 @@ class SearchByPinFragment : BaseFragment() {
     }
 
     override fun init() {
-
+        viewModel.navigator.navigateBy(this)
     }
 
     @FlowPreview
@@ -34,7 +34,9 @@ class SearchByPinFragment : BaseFragment() {
         Scaffold(modifier = Modifier.fillMaxSize(),
             topBar = {
                 Column {
-                    SearchToolbar()
+                    SearchToolbar {
+                        viewModel.goBack()
+                    }
                     SearchComponent {
                         viewModel.onSearch(it)
                     }
