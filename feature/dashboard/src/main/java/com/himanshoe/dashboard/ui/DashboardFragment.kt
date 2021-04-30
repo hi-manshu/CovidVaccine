@@ -1,6 +1,5 @@
 package com.himanshoe.dashboard.ui
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +13,7 @@ import com.himanshoe.dashboard.component.LocationList
 import com.himanshoe.dashboard.component.SearchAppBar
 import com.himanshoe.dashboard.component.Toolbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 
 @AndroidEntryPoint
 class DashboardFragment : BaseFragment() {
@@ -28,6 +28,7 @@ class DashboardFragment : BaseFragment() {
         viewModel.init()
     }
 
+    @FlowPreview
     @Composable
     @ExperimentalComposeUiApi
     override fun SetupView() {
@@ -35,7 +36,7 @@ class DashboardFragment : BaseFragment() {
             topBar = {
                 Column {
                     Toolbar()
-                    SearchAppBar{
+                    SearchAppBar {
                         viewModel.onSearch(it)
                     }
                 }

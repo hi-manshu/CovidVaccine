@@ -36,7 +36,6 @@ fun LocationList(viewModel: DashboardViewModel) {
             LocationItem(it)
         })
     }
-
 }
 
 fun getFilteredList(query: String?, centers: List<Center>): List<Center> {
