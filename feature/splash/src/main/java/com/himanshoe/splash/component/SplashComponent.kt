@@ -36,15 +36,6 @@ fun SplashComponent() {
                     contentDescription = "Icon"
                 )
             }
-        },
-        bottomBar = {
-            Text(
-                text = "Build by Himanshu Singh",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(medium),
-                textAlign = TextAlign.Center,
-            )
         }
     )
 }

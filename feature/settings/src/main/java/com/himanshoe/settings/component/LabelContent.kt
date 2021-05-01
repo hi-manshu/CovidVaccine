@@ -149,6 +149,18 @@ private fun DeveloperItem() {
             color = Color.Black,
             fontWeight = FontWeight.SemiBold
         )
+        Spacer(Modifier.height(10.dp))
+
+        Text(
+            text = "Gurupreet singh (Twitter: @_gurupreet)",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, bottom = 16.dp, top = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.body2,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
         Divider(Modifier.height(1.dp))
     }
 }
