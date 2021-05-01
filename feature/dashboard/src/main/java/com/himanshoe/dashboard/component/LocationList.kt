@@ -13,16 +13,21 @@ import com.himanshoe.dashboard.ui.DashboardViewModel
 import java.util.*
 
 @Composable
-fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
+fun LocationList(
+    viewModel: DashboardViewModel,
+    onMapLocationFetch: (Pair<Double, Double>) -> Unit
+) {
     val searchQuery = viewModel.searchQuery.observeAsState()
 
     val locations = viewModel.vaccineLocationResponse.observeAsState()
+
+    val pinCode = viewModel.searchPinCode.observeAsState()
 
     val centers = locations.value?.centers ?: emptyList()
 
     val textState = remember { mutableStateOf(centers) }
 
-    val locationList = getFilteredList(searchQuery.value, centers ?: emptyList())
+    val locationList = getFilteredList(searchQuery.value, pinCode.value, centers)
 
     textState.value = locationList
 
@@ -33,22 +38,28 @@ fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double
         items(items = textState.value.sortedBy {
             it.name
         } ?: emptyList(), key = null, {
-            LocationItem(it,onMapLocationFetch)
+            LocationItem(it, onMapLocationFetch)
         })
     }
 }
 
-fun getFilteredList(query: String?, centers: List<Center>): List<Center> {
-    return if (query != null && centers.isNotEmpty()) {
-        val q = query.toLowerCase(Locale.ROOT)
-        centers.filter {
-            it.name.toLowerCase(Locale.ROOT).contains(q)
-                    || it.blockName.toLowerCase(Locale.ROOT).contains(q)
-                    || it.stateName.toLowerCase(Locale.ROOT).contains(q)
-                    || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
-                    || it.districtName.toLowerCase(Locale.ROOT).contains(q)
+fun getFilteredList(query: String?, pinCode: String?, centers: List<Center>): List<Center> {
+    if (!pinCode.isNullOrEmpty()) {
+        return centers.filter {
+            it.pincode.toString().toLowerCase(Locale.ROOT).contains(pinCode)
         }
     } else {
-        centers
+        return if (query != null && centers.isNotEmpty()) {
+            val q = query.toLowerCase(Locale.ROOT)
+            centers.filter {
+                it.name.toLowerCase(Locale.ROOT).contains(q)
+                        || it.blockName.toLowerCase(Locale.ROOT).contains(q)
+                        || it.stateName.toLowerCase(Locale.ROOT).contains(q)
+                        || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
+                        || it.districtName.toLowerCase(Locale.ROOT).contains(q)
+            }
+        } else {
+            centers
+        }
     }
 }
