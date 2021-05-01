@@ -18,6 +18,8 @@ class AppDataStore {
         const val DISTRICT = "district"
         const val DISTRICT_NAME = "district-name"
         const val ONBOARDING = "onboarding"
+        const val BANNER_DISMISS = "onboarding"
+        const val PIN_CODE = "pincode"
 
         fun getBoolean(
             context: Context,

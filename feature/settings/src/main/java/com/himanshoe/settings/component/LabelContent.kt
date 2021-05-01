@@ -107,6 +107,5 @@ private fun DeveloperItem() {
             fontWeight = FontWeight.SemiBold
         )
         Divider(Modifier.height(1.dp))
-
     }
 }

@@ -43,6 +43,11 @@ class DashboardFragment : BaseFragment() {
                     SearchAppBar {
                         viewModel.onSearch(it)
                     }
+                    FloatingBanner(viewModel,{
+                        viewModel.dismissBanner()
+                    }, {
+                        viewModel.savePinCode(it)
+                    })
                 }
             }, bottomBar = {
                 InstantSearch {

@@ -1,5 +1,6 @@
 package com.himanshoe.dashboard.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
@@ -30,12 +31,13 @@ fun InstantSearch( triggerSearch: () -> Unit) {
             )
             .padding(16.dp)
             .clip(CircleShape)
+
     ) {
         Text(
-            text = "Instant Search",
+            text = "Search by Pin Code",
             style = MaterialTheme.typography.body1,
             color = Color.Black,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
     }
 }

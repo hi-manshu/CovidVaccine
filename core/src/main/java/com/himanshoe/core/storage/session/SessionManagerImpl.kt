@@ -52,4 +52,20 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
     override suspend fun getCurrentDate(): String {
         return DateUtil.currentDateInString()
     }
+
+    override suspend fun dismissBanner() {
+        AppDataStore.setBoolean(context, AppDataStore.BANNER_DISMISS, true)
+    }
+
+    override suspend fun savePinCodeForDistrict(pinCode: Int) {
+        AppDataStore.setInt(context, AppDataStore.PIN_CODE, pinCode)
+    }
+
+    override suspend fun getPinCodeForDistrict(): Int {
+        return AppDataStore.getInt(context, AppDataStore.PIN_CODE)
+    }
+
+    override suspend fun isBannerDismissed(): Boolean {
+        return AppDataStore.getBoolean(context, AppDataStore.BANNER_DISMISS)
+    }
 }

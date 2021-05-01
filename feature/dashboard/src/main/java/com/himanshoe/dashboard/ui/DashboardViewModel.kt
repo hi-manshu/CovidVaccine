@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.himanshoe.core.base.BaseViewModel
+import com.himanshoe.core.navigation.event.Event
 import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
 import com.himanshoe.core.util.Status
@@ -34,6 +35,10 @@ class DashboardViewModel @Inject constructor(
     private val _searchQuery = MutableLiveData<String>()
     val searchQuery: LiveData<String>
         get() = _searchQuery
+
+    private val _dismissBanner = MutableLiveData(Event(false))
+    val dismissBanner: LiveData<Event<Boolean>>
+        get() = _dismissBanner
 
     fun init() {
         viewModelScope.launch {
@@ -80,5 +85,21 @@ class DashboardViewModel @Inject constructor(
 
     fun navigateToSearch() {
         navigator.navigate(deepLinkToSearchByPin())
+    }
+
+    fun dismissBanner() {
+        viewModelScope.launch {
+            sessionManager.dismissBanner()
+            _dismissBanner.postValue(Event(true))
+        }
+    }
+
+    fun savePinCode(pinCode: Int) {
+        if (pinCode.toString().count() == 6) {
+            viewModelScope.launch {
+                sessionManager.dismissBanner()
+                sessionManager.savePinCodeForDistrict(pinCode)
+            }
+        }
     }
 }
