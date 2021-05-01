@@ -1,5 +1,6 @@
 package com.himanshoe.dashboard.component
 
+
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -8,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontWeight
+
 
 @Composable
 fun InstantSearch(triggerSearch: () -> Unit) {

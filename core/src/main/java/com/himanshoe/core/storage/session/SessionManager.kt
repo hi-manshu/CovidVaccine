@@ -23,4 +23,12 @@ interface SessionManager {
     suspend fun isOnboardingDone():Boolean
 
     suspend fun getCurrentDate():String
+
+    suspend fun dismissBanner()
+
+    suspend fun savePinCodeForDistrict(pinCode:String)
+
+    suspend fun getPinCodeForDistrict():String
+
+    suspend fun isBannerDismissed() :Boolean
 }

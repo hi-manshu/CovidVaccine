@@ -1,5 +1,3 @@
-package com.himanshoe.dashboard.component
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -18,10 +16,7 @@ import com.himanshoe.dashboard.ui.DashboardViewModel
 import java.util.*
 
 @Composable
-fun LocationList(
-    viewModel: DashboardViewModel,
-    onMapLocationFetch: (Pair<Double, Double>) -> Unit
-) {
+fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
     val searchQuery = viewModel.searchQuery.observeAsState()
 
     val locations = viewModel.vaccineLocationResponse.observeAsState()
@@ -60,10 +55,10 @@ fun getFilteredList(query: String?, centers: List<Center>): List<Center> {
         val q = query.toLowerCase(Locale.ROOT)
         centers.filter {
             it.name.toLowerCase(Locale.ROOT).contains(q)
-                || it.blockName.toLowerCase(Locale.ROOT).contains(q)
-                || it.stateName.toLowerCase(Locale.ROOT).contains(q)
-                || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
-                || it.districtName.toLowerCase(Locale.ROOT).contains(q)
+                    || it.blockName.toLowerCase(Locale.ROOT).contains(q)
+                    || it.stateName.toLowerCase(Locale.ROOT).contains(q)
+                    || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
+                    || it.districtName.toLowerCase(Locale.ROOT).contains(q)
         }
     } else {
         centers

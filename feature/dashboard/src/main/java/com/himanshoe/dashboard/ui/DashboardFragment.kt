@@ -2,6 +2,8 @@ package com.himanshoe.dashboard.ui
 
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -9,6 +11,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.fragment.app.viewModels
 import com.himanshoe.core.base.BaseFragment
+import com.himanshoe.core.navigation.event.consume
 import com.himanshoe.dashboard.component.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.FlowPreview
@@ -20,7 +23,11 @@ class DashboardFragment : BaseFragment() {
     private val viewModel by viewModels<DashboardViewModel>()
 
     override fun setupObserver() {
-
+        viewModel.error.observe(viewLifecycleOwner, {
+            it.consume { event ->
+                Toast.makeText(requireContext(), event.data, Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun init() {
@@ -30,6 +37,7 @@ class DashboardFragment : BaseFragment() {
         }
     }
 
+    @ExperimentalAnimationApi
     @FlowPreview
     @Composable
     @ExperimentalComposeUiApi
@@ -43,6 +51,11 @@ class DashboardFragment : BaseFragment() {
                     SearchAppBar {
                         viewModel.onSearch(it)
                     }
+                    FloatingBanner(viewModel, {
+                        viewModel.dismissBanner()
+                    }, {
+                        viewModel.savePinCode(it)
+                    })
                 }
             }, floatingActionButton = {
                 InstantSearch {
