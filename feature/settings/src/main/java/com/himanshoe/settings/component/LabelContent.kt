@@ -73,7 +73,7 @@ private fun DeveloperItem() {
 
     ) {
         Text(
-            text = "Developer",
+            text = "Contributors",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, top = 16.dp, bottom = 2.dp),
@@ -85,7 +85,19 @@ private fun DeveloperItem() {
         Spacer(Modifier.height(1.dp))
 
         Text(
-            text = "Himanshu Singh.(Twitter: @hi_man_shoe)",
+            text = "Himanshu Singh (Twitter: @hi_man_shoe)",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, bottom = 16.dp, top = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.body2,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
+        Spacer(Modifier.height(10.dp))
+
+        Text(
+            text = "Rohan Shah (LinkedIn: @rohanrshah)",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, bottom = 16.dp, top = 2.dp),
