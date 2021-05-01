@@ -64,6 +64,7 @@ class DistrictViewModel @Inject constructor(
     fun setDistrict(districtId: Int, name: String) {
         viewModelScope.launch {
             sessionManager.apply {
+                sessionManager.savePinCodeForDistrict("")
                 saveDistrictId(districtId)
                 saveDistrictName(name)
                 isOnboardingDone(true)
