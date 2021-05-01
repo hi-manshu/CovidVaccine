@@ -1,5 +1,7 @@
 package com.himanshoe.dashboard.component
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.core.navigation.event.consume
 import com.himanshoe.dashboard.ui.DashboardViewModel
 
+@ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
 fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (String) -> Unit) {
@@ -39,7 +42,8 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
         dismissValue.value = it.data
     }
 
-    if (dismissValue.value == false) {
+    AnimatedVisibility(visible = !dismissValue.value) {
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()

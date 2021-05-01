@@ -68,4 +68,5 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
     override suspend fun isBannerDismissed(): Boolean {
         return AppDataStore.getBoolean(context, AppDataStore.BANNER_DISMISS)
     }
+
 }
