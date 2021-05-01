@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.himanshoe.core.navigation.event.consume
 import com.himanshoe.dashboard.ui.DashboardViewModel
 
 @ExperimentalComposeUiApi
@@ -31,7 +32,11 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
     val dismissState = viewModel.dismissBanner.observeAsState()
 
     val dismissValue = remember {
-        mutableStateOf(dismissState.value?.data)
+        mutableStateOf(false)
+    }
+
+    dismissState.value?.consume {
+        dismissValue.value = it.data
     }
 
     if (dismissValue.value == false) {
@@ -58,6 +63,7 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
                 Spacer(Modifier.height(12.dp))
 
                 val textState = remember { mutableStateOf("") }
+
                 val keyboardController = LocalSoftwareKeyboardController.current
 
                 TextField(
@@ -96,7 +102,6 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
 
                     Button(
                         onClick = {
-                            dismissValue.value = true
                             onDismiss()
                         },
                         modifier = Modifier
@@ -113,7 +118,6 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
                     }
                     Button(
                         onClick = {
-                            dismissValue.value = true
                             onSave(textState.value)
                         },
                         modifier = Modifier

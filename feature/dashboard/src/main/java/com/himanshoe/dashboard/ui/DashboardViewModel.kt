@@ -15,6 +15,7 @@ import com.himanshoe.dashboard.util.deepLinkToSearchByPin
 import com.himanshoe.dashboard.util.deepLinkToSettings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -36,6 +37,10 @@ class DashboardViewModel @Inject constructor(
     val searchQuery: LiveData<String>
         get() = _searchQuery
 
+    private val _searchPinCode = MutableLiveData("")
+    val searchPinCode: LiveData<String>
+        get() = _searchPinCode
+
     private val _dismissBanner = MutableLiveData(Event(false))
     val dismissBanner: LiveData<Event<Boolean>>
         get() = _dismissBanner
@@ -52,7 +57,11 @@ class DashboardViewModel @Inject constructor(
                 }
                 .collect { result ->
                     when (result) {
-                        is Status.OnSuccess -> _vaccineLocationResponse.postValue(result.response)
+                        is Status.OnSuccess -> {
+                            _searchPinCode.postValue(sessionManager.getPinCodeForDistrict())
+                            _dismissBanner.postValue(Event(sessionManager.isBannerDismissed()))
+                            _vaccineLocationResponse.postValue(result.response)
+                        }
                         is Status.OnFailed -> catchError()
                     }
                 }
@@ -94,12 +103,17 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
-    fun savePinCode(pinCode: Int) {
-        if (pinCode.toString().count() == 6) {
+    fun savePinCode(pinCode: String) {
+        if (pinCode.count() == 6) {
             viewModelScope.launch {
                 sessionManager.dismissBanner()
+                _dismissBanner.postValue(Event(true))
                 sessionManager.savePinCodeForDistrict(pinCode)
+                delay(1000)
+                _searchPinCode.postValue(sessionManager.getPinCodeForDistrict())
             }
+        } else {
+            _error.postValue(Event("Please enter a correct pin code"))
         }
     }
 }

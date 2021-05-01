@@ -26,9 +26,9 @@ interface SessionManager {
 
     suspend fun dismissBanner()
 
-    suspend fun savePinCodeForDistrict(pinCode:Int)
+    suspend fun savePinCodeForDistrict(pinCode:String)
 
-    suspend fun getPinCodeForDistrict():Int
+    suspend fun getPinCodeForDistrict():String
 
     suspend fun isBannerDismissed() :Boolean
 }
