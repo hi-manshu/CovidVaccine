@@ -31,6 +31,6 @@ This projects used the [Cowin APIs](https://apisetu.gov.in/public/api) provided 
   <img src="https://github.com/hi-manshu/CovidVaccine/blob/main/art/arch-1.jpg">
 
 #### APK Link:
-* [You can download the app from here](https://i.diawi.com/PL6j4J)
+* [You can download the app from here](https://appsenjoy.com/dK98n)
 
 #### [Click here to connect with me](https://twitter.com/hi_man_shoe)
