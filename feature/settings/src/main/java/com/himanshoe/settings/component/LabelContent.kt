@@ -23,7 +23,7 @@ fun LabelContent(settingsViewModel: SettingsViewModel, onLocationClick: () -> Un
             .fillMaxSize()
 
     ) {
-        LocationItem(locationState,onLocationClick)
+        LocationItem(locationState, onLocationClick)
         DeveloperItem()
     }
 }

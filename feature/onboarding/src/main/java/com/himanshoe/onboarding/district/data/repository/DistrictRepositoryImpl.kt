@@ -4,7 +4,6 @@ import com.himanshoe.core.util.Status
 import com.himanshoe.core.util.performNetworkCall
 import com.himanshoe.onboarding.district.data.api.DistrictApiService
 import com.himanshoe.onboarding.district.data.response.DistrictResponse
-import com.himanshoe.onboarding.state.data.api.StateApiService
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -17,6 +16,6 @@ class DistrictRepositoryImpl @Inject constructor(private val districtApiService:
 
 
     override suspend fun getDistricts(stateId: Int): Flow<Status<DistrictResponse>> {
-       return performNetworkCall { districtApiService.getDistricts(stateId) }
+        return performNetworkCall { districtApiService.getDistricts(stateId) }
     }
 }

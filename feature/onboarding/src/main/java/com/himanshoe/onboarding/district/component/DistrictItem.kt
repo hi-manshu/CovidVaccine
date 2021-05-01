@@ -20,9 +20,10 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.district.data.response.District
 
 @Composable
-fun DistrictItem(district: District, onClick: (Int,String) -> Unit) {
+fun DistrictItem(district: District, onClick: (Int, String) -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable { onClick(district.districtId, district.districtName) },
         verticalAlignment = Alignment.CenterVertically
     ) {

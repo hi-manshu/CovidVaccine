@@ -2,7 +2,6 @@ package com.himanshoe.onboarding.district.data.repository
 
 import com.himanshoe.core.util.Status
 import com.himanshoe.onboarding.district.data.response.DistrictResponse
-import com.himanshoe.onboarding.state.data.response.StateResponse
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -11,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
  */
 interface DistrictRepository {
 
-    suspend fun getDistricts(stateId:Int): Flow<Status<DistrictResponse>>
+    suspend fun getDistricts(stateId: Int): Flow<Status<DistrictResponse>>
 }

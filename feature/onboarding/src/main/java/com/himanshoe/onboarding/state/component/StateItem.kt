@@ -20,9 +20,10 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.state.data.response.State
 
 @Composable
-fun StateItem(state: State, onClick: (Int,String) -> Unit) {
+fun StateItem(state: State, onClick: (Int, String) -> Unit) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .clickable { onClick(state.stateId, state.stateName) },
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -41,7 +42,7 @@ fun StateItem(state: State, onClick: (Int,String) -> Unit) {
             fontWeight = FontWeight.SemiBold
         )
         Icon(
-            imageVector = Icons.Default.ArrowForward, 
+            imageVector = Icons.Default.ArrowForward,
             contentDescription = "click state",
             modifier = Modifier.padding(8.dp)
         )
