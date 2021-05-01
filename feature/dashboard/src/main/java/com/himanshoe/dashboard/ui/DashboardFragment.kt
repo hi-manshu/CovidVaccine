@@ -57,7 +57,7 @@ class DashboardFragment : BaseFragment() {
                         viewModel.savePinCode(it)
                     })
                 }
-            }, bottomBar = {
+            }, floatingActionButton = {
                 InstantSearch {
                     viewModel.navigateToSearch()
                 }

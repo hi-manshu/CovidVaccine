@@ -1,12 +1,17 @@
 package com.himanshoe.onboarding.district.component
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -15,20 +20,31 @@ import androidx.compose.ui.unit.dp
 import com.himanshoe.onboarding.district.data.response.District
 
 @Composable
-fun DistrictItem(district: District, onClick: (Int,String) -> Unit) {
-    Text(
-        text = district.districtName,
+fun DistrictItem(district: District, onClick: (Int, String) -> Unit) {
+    Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
-            .height(30.dp)
-            .padding(top = 2.dp)
-            .clickable { onClick(district.districtId,district.districtName) },
-        textAlign = TextAlign.Justify.apply {
-            TextAlign.Center
-        },
-        style = MaterialTheme.typography.h4,
-        color = Color.Black,
-        fontWeight = FontWeight.SemiBold
-    )
+            .clickable { onClick(district.districtId, district.districtName) },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = district.districtName,
+            modifier = Modifier
+                .weight(1f)
+                .padding(16.dp)
+                .height(30.dp)
+                .padding(top = 2.dp),
+            textAlign = TextAlign.Justify.apply {
+                TextAlign.Center
+            },
+            style = MaterialTheme.typography.h4,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
+        Icon(
+            imageVector = Icons.Default.ArrowForward,
+            contentDescription = "click district",
+            modifier = Modifier.padding(8.dp)
+        )
+    }
 }

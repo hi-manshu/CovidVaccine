@@ -65,10 +65,10 @@ fun getFilteredList(query: String?, centers: List<Center>): List<Center> {
         val q = query.toLowerCase(Locale.ROOT)
         centers.filter {
             it.name.toLowerCase(Locale.ROOT).contains(q)
-                    || it.blockName.toLowerCase(Locale.ROOT).contains(q)
-                    || it.stateName.toLowerCase(Locale.ROOT).contains(q)
-                    || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
-                    || it.districtName.toLowerCase(Locale.ROOT).contains(q)
+                || it.blockName.toLowerCase(Locale.ROOT).contains(q)
+                || it.stateName.toLowerCase(Locale.ROOT).contains(q)
+                || it.pincode.toString().toLowerCase(Locale.ROOT).contains(q)
+                || it.districtName.toLowerCase(Locale.ROOT).contains(q)
         }
     } else {
         centers

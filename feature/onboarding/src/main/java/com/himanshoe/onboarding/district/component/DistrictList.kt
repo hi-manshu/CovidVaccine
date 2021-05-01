@@ -17,7 +17,7 @@ import java.util.Collections.emptyList
 fun DistrictList(viewModel: DistrictViewModel, onClick: (Int, String) -> Unit) {
 
     val states = viewModel.districtResponse.observeAsState()
-    
+
     val loadingState = viewModel.loading.observeAsState()
 
     if (loadingState.value == true) {

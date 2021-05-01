@@ -28,7 +28,7 @@ fun DistrictToolbar() {
                 .padding(medium)
         ) {
             Text(
-                text = "Current District?",
+                text = "Select Current District",
                 modifier = Modifier
                     .fillMaxWidth()
                     .alpha(0.6f),

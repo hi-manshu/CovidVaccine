@@ -28,7 +28,7 @@ fun StateToolbar() {
                 .padding(medium)
         ) {
             Text(
-                text = "Current State?",
+                text = "Select Your State",
                 modifier = Modifier
                     .fillMaxWidth()
                     .alpha(0.6f),

@@ -40,7 +40,7 @@ class StateFragment : BaseFragment() {
             }) {
             Box(modifier = Modifier.fillMaxSize()) {
                 StateList(viewModel) { id, name ->
-                    viewModel.saveState(id,name)
+                    viewModel.saveState(id, name)
                 }
             }
         }
