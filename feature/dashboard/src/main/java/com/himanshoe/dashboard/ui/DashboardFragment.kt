@@ -44,7 +44,7 @@ class DashboardFragment : BaseFragment() {
                         viewModel.onSearch(it)
                     }
                 }
-            }, bottomBar = {
+            }, floatingActionButton = {
                 InstantSearch {
                     viewModel.navigateToSearch()
                 }

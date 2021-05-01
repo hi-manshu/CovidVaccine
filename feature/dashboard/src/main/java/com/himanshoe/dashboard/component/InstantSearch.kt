@@ -4,9 +4,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.OutlinedButton
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -20,22 +20,20 @@ import com.himanshoe.dashboard.ui.DashboardViewModel
 
 @Composable
 fun InstantSearch( triggerSearch: () -> Unit) {
-
-    OutlinedButton(
+    ExtendedFloatingActionButton(
         onClick = { triggerSearch() },
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentSize(
-                Alignment.Center
+        text = {
+            Text(
+                text = "PinCode",
+                color = MaterialTheme.colors.onPrimary,
+                style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold)
+        ) },
+
+        icon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null
             )
-            .padding(16.dp)
-            .clip(CircleShape)
-    ) {
-        Text(
-            text = "Instant Search",
-            style = MaterialTheme.typography.body1,
-            color = Color.Black,
-            fontWeight = FontWeight.Medium
-        )
-    }
+        }
+    )
 }

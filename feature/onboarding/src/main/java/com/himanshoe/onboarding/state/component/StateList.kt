@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import com.himanshoe.core.component.ListLoadingComponent
+import com.himanshoe.onboarding.state.data.response.State
 import com.himanshoe.onboarding.state.ui.StateViewModel
 import java.util.Collections.emptyList
 
@@ -17,7 +18,7 @@ import java.util.Collections.emptyList
 fun StateList(viewModel: StateViewModel, onClick: (Int, String) -> Unit) {
 
     val states = viewModel.stateReponse.observeAsState()
-
+    val stateList = listOf<State>(State(0, "Rajasthan"), State(1, "Delhi"), State(2, "Punjab"))
     val loadingState = viewModel.loading.observeAsState()
 
     if (loadingState.value == true) {
@@ -29,7 +30,7 @@ fun StateList(viewModel: StateViewModel, onClick: (Int, String) -> Unit) {
             modifier = Modifier
                 .fillMaxHeight()
         ) {
-            items(items = states.value?.states ?: emptyList(), null, {
+            items(items = stateList, null, {
                 StateItem(it, onClick)
                 Divider()
             })

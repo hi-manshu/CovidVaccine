@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import com.himanshoe.core.component.ListLoadingComponent
+import com.himanshoe.onboarding.district.data.response.District
 import com.himanshoe.onboarding.district.ui.DistrictViewModel
 import java.util.Collections.emptyList
 
@@ -17,7 +18,12 @@ import java.util.Collections.emptyList
 fun DistrictList(viewModel: DistrictViewModel, onClick: (Int, String) -> Unit) {
 
     val states = viewModel.districtResponse.observeAsState()
-    
+    val districts = listOf<District>(
+        District(0, "Churu"),
+        District(2, "Ganganagar"),
+        District(3, "Jaipur"),
+        District(4, "Udaipur"),
+    )
     val loadingState = viewModel.loading.observeAsState()
 
     if (loadingState.value == true) {
@@ -29,7 +35,7 @@ fun DistrictList(viewModel: DistrictViewModel, onClick: (Int, String) -> Unit) {
             modifier = Modifier
                 .fillMaxHeight()
         ) {
-            items(items = states.value?.districts ?: emptyList(), null, {
+            items(items = districts, null, {
                 DistrictItem(it, onClick)
                 Divider()
             })
