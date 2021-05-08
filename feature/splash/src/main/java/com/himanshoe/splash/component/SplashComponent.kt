@@ -37,5 +37,5 @@ fun SplashComponent() {
                 )
             }
         }
-    )R
+    )
 }
