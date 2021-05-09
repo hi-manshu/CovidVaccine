@@ -1,6 +1,7 @@
 package com.himanshoe.core.di
 
 import com.himanshoe.core.BuildConfig
+import com.himanshoe.core.util.UserAgentInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,9 +24,17 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient {
+    fun provideUserAgentInterceptor(): UserAgentInterceptor {
+        return UserAgentInterceptor()
+    }
+
+    @Provides
+    fun provideOkHttpClient(
+        userAgentInterceptor: UserAgentInterceptor,
+    ): OkHttpClient {
         val builder = OkHttpClient
             .Builder()
+            .addInterceptor(userAgentInterceptor)
 
         if (BuildConfig.DEBUG) {
             val loggingInterceptor = HttpLoggingInterceptor()
