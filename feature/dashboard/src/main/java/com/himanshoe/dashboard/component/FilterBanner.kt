@@ -1,5 +1,6 @@
 package com.himanshoe.dashboard.component
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
@@ -31,6 +32,8 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
 
     val dismissState = viewModel.openFilter.observeAsState()
 
+    val currentFilter = viewModel.currentAgeFilter.observeAsState()
+
     val dismissValue = remember {
         mutableStateOf(true)
     }
@@ -47,7 +50,6 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
                 .padding(16.dp),
             elevation = 2.dp
         ) {
-
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -68,7 +70,13 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
 
                 val radioOptions = listOf("18+", "45+", "all")
 
-                val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
+                val index = when (currentFilter.value) {
+                    null -> 2
+                    "18+" -> 0
+                    "45+" -> 1
+                    else -> 2
+                }
+                val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[index]) }
 
                 Row(modifier = Modifier.fillMaxWidth()) {
                     radioOptions.forEach { text ->
@@ -144,6 +152,4 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
             }
         }
     }
-
-
 }
