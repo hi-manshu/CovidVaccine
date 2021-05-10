@@ -41,6 +41,14 @@ class DashboardViewModel @Inject constructor(
     val searchPinCode: LiveData<String>
         get() = _searchPinCode
 
+    private val _currentAgeFilter = MutableLiveData("")
+    val currentAgeFilter: LiveData<String>
+        get() = _currentAgeFilter
+
+    private val _openFilter = MutableLiveData(Event(false))
+    val openFilter: LiveData<Event<Boolean>>
+        get() = _openFilter
+
     private val _dismissBanner = MutableLiveData(Event(false))
     val dismissBanner: LiveData<Event<Boolean>>
         get() = _dismissBanner
@@ -103,6 +111,12 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
+    fun dismissFilterBanner() {
+        viewModelScope.launch {
+            _openFilter.postValue(Event(false))
+        }
+    }
+
     fun savePinCode(pinCode: String) {
         if (pinCode.count() == 6) {
             viewModelScope.launch {
@@ -116,4 +130,17 @@ class DashboardViewModel @Inject constructor(
             _error.postValue(Event("Please enter a correct pin code"))
         }
     }
+
+    fun openFilter() {
+        _openFilter.postValue(Event(true))
+    }
+
+    fun saveAgeFilter(age: String) {
+        viewModelScope.launch {
+            sessionManager.saveAgeFilter(age)
+            _currentAgeFilter.postValue(sessionManager.getAgeFilter())
+        }
+    }
+
+
 }

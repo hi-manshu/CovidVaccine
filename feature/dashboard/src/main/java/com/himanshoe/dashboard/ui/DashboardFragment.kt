@@ -3,6 +3,7 @@ package com.himanshoe.dashboard.ui
 import LocationList
 import android.content.Intent
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
@@ -49,13 +50,21 @@ class DashboardFragment : BaseFragment() {
                     Toolbar(onSettingsClicked = {
                         viewModel.navigateToSettings()
                     })
-                    SearchAppBar {
+                    SearchAppBar({
                         viewModel.onSearch(it)
-                    }
+                    }, {
+                        viewModel.openFilter()
+                    })
                     FloatingBanner(viewModel, {
                         viewModel.dismissBanner()
                     }, {
                         viewModel.savePinCode(it)
+                    })
+                    FilterBanner(viewModel, {
+                        viewModel.dismissFilterBanner()
+                    }, {
+                        viewModel.saveAgeFilter(it)
+                        viewModel.dismissFilterBanner()
                     })
                 }
             }, floatingActionButton = {
