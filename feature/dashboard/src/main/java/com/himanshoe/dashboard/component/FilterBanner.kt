@@ -3,6 +3,7 @@ package com.himanshoe.dashboard.component
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
@@ -10,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -37,15 +40,18 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
     }
 
     AnimatedVisibility(visible = dismissValue.value) {
-
-        Box(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.primaryVariant)
-                .padding(16.dp)
+                .background(MaterialTheme.colors.secondary)
+                .padding(16.dp),
+            elevation = 2.dp
         ) {
+
             Column(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
                 Text(
                     text = "Filter by age",
@@ -54,18 +60,18 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
                         .padding(bottom = 4.dp),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.h5,
-                    color = Color.White,
+                    color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
 
                 Spacer(Modifier.height(12.dp))
 
-                val radioOptions = listOf("18+","45+","all")
+                val radioOptions = listOf("18+", "45+", "all")
 
                 val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[2]) }
 
                 Row(modifier = Modifier.fillMaxWidth()) {
-                    radioOptions.forEach {text->
+                    radioOptions.forEach { text ->
                         Row(
                             Modifier
 
@@ -83,14 +89,19 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
 
                             RadioButton(
 
-                                selected = (text == selectedOption),modifier = Modifier,
+                                selected = (text == selectedOption),
+                                modifier = Modifier,
+                                colors = RadioButtonDefaults.colors(
+                                    unselectedColor = Color.Gray,
+                                    selectedColor = Color.Black
+                                ),
                                 onClick = {
 
                                 }
                             )
 
                             Text(
-                                style = TextStyle(color = Color.White),
+                                style = TextStyle(color = Color.Black),
                                 text = text.capitalize(Locale.ROOT),
                                 modifier = Modifier.padding(start = 16.dp)
                             )
@@ -101,15 +112,11 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
                 Spacer(Modifier.height(12.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
 
-                    Button(
-                        onClick = {
-                            onDismiss()
-                        },
+                    OutlinedButton(
+                        onClick = { onDismiss() },
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
-                            .padding(end = 4.dp),
-                        colors =
-                        ButtonDefaults.buttonColors(backgroundColor = Color.LightGray)
+                            .padding(end = 4.dp)
                     ) {
                         Text(
                             text = "Dismiss",
@@ -125,11 +132,11 @@ fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (
                             .fillMaxWidth()
                             .padding(start = 4.dp),
                         colors =
-                        ButtonDefaults.buttonColors(backgroundColor = Color.White)
+                        ButtonDefaults.buttonColors(backgroundColor = Color.Black)
                     ) {
                         Text(
                             text = "Save",
-                            color = Color.Black,
+                            color = Color.White,
                             fontWeight = FontWeight.Bold
                         )
                     }
