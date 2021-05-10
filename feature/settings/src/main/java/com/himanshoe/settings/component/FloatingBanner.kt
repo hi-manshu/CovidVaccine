@@ -31,8 +31,8 @@ import com.himanshoe.settings.ui.SettingsViewModel
 @ExperimentalComposeUiApi
 @Composable
 fun FloatingBanner(viewModel: SettingsViewModel, onDismiss: () -> Unit, onSave: (String) -> Unit) {
-
     val dismissState = viewModel.dismissBanner.observeAsState()
+
     val dismissValue = remember {
         mutableStateOf(false)
     }
@@ -43,14 +43,17 @@ fun FloatingBanner(viewModel: SettingsViewModel, onDismiss: () -> Unit, onSave: 
 
     AnimatedVisibility(visible = !dismissValue.value) {
 
-        Box(
+        Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.primaryVariant)
-                .padding(16.dp)
+                .background(MaterialTheme.colors.secondary)
+                .padding(16.dp),
+            elevation = 2.dp
         ) {
             Column(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
             ) {
                 Text(
                     text = "Looking for specific pin code in this district?",
@@ -59,7 +62,7 @@ fun FloatingBanner(viewModel: SettingsViewModel, onDismiss: () -> Unit, onSave: 
                         .padding(bottom = 4.dp),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.h5,
-                    color = Color.White,
+                    color = Color.Black,
                     fontWeight = FontWeight.Bold
                 )
 
@@ -95,23 +98,19 @@ fun FloatingBanner(viewModel: SettingsViewModel, onDismiss: () -> Unit, onSave: 
                     }),
                     colors = TextFieldDefaults.textFieldColors(
                         backgroundColor = MaterialTheme.colors.background,
-                        focusedIndicatorColor = Color.Transparent,
-                        unfocusedIndicatorColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Gray,
+                        unfocusedIndicatorColor = Color.LightGray,
                         cursorColor = MaterialTheme.colors.primary
                     )
                 )
                 Spacer(Modifier.height(12.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
 
-                    Button(
-                        onClick = {
-                            onDismiss()
-                        },
+                    OutlinedButton(
+                        onClick = { onDismiss() },
                         modifier = Modifier
                             .fillMaxWidth(0.5f)
-                            .padding(end = 4.dp),
-                        colors =
-                        ButtonDefaults.buttonColors(backgroundColor = Color.LightGray)
+                            .padding(end = 4.dp)
                     ) {
                         Text(
                             text = "Dismiss",
@@ -127,11 +126,11 @@ fun FloatingBanner(viewModel: SettingsViewModel, onDismiss: () -> Unit, onSave: 
                             .fillMaxWidth()
                             .padding(start = 4.dp),
                         colors =
-                        ButtonDefaults.buttonColors(backgroundColor = Color.White)
+                        ButtonDefaults.buttonColors(backgroundColor = Color.Black)
                     ) {
                         Text(
                             text = "Save",
-                            color = Color.Black,
+                            color = Color.White,
                             fontWeight = FontWeight.Bold
                         )
                     }

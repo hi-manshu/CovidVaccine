@@ -108,7 +108,7 @@ private fun AddressItem(center: Center, onMapLocationFetch: (Pair<Double, Double
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(MaterialTheme.colors.primary)
+            .background(MaterialTheme.colors.secondaryVariant)
             .padding(16.dp)
     ) {
         Row(Modifier.fillMaxWidth()) {

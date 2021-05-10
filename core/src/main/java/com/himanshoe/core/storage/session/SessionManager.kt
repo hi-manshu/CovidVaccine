@@ -16,6 +16,10 @@ interface SessionManager {
 
     suspend fun saveDistrictId(districtId: Int)
 
+    suspend fun saveAgeFilter(age: String)
+
+    suspend fun getAgeFilter():String
+
     suspend fun getDistrictId(): Int
 
     suspend fun isOnboardingDone(status:Boolean)

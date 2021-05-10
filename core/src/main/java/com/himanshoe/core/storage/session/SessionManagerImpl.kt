@@ -37,6 +37,14 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
         AppDataStore.setInt(context, AppDataStore.DISTRICT, districtId)
     }
 
+    override suspend fun saveAgeFilter(age: String) {
+        AppDataStore.setString(context, AppDataStore.AGE, age)
+    }
+
+    override suspend fun getAgeFilter(): String {
+        return AppDataStore.getString(context, AppDataStore.AGE,"all")
+    }
+
     override suspend fun getDistrictId(): Int {
         return AppDataStore.getInt(context, AppDataStore.DISTRICT)
     }

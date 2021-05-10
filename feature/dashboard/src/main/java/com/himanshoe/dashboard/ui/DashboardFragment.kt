@@ -49,13 +49,21 @@ class DashboardFragment : BaseFragment() {
                     Toolbar(onSettingsClicked = {
                         viewModel.navigateToSettings()
                     })
-                    SearchAppBar {
+                    SearchAppBar({
                         viewModel.onSearch(it)
-                    }
+                    }, {
+                        viewModel.openFilter()
+                    })
                     FloatingBanner(viewModel, {
                         viewModel.dismissBanner()
                     }, {
                         viewModel.savePinCode(it)
+                    })
+                    FilterBanner(viewModel, {
+                        viewModel.dismissFilterBanner()
+                    }, {
+                        viewModel.saveAgeFilter(it)
+                        viewModel.dismissFilterBanner()
                     })
                 }
             }, floatingActionButton = {

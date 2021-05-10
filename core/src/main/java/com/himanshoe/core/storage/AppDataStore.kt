@@ -16,6 +16,7 @@ class AppDataStore {
         const val STATE = "state"
         const val STATE_NAME = "state-name"
         const val DISTRICT = "district"
+        const val AGE = "age"
         const val DISTRICT_NAME = "district-name"
         const val ONBOARDING = "onboarding"
         const val BANNER_DISMISS = "banner"

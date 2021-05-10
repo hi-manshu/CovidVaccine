@@ -4,12 +4,8 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
-import androidx.compose.material.R
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.sharp.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -17,33 +13,32 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.himanshoe.core.navigation.event.consume
 import com.himanshoe.dashboard.ui.DashboardViewModel
+import java.util.*
 
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (String) -> Unit) {
+fun FilterBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave: (String) -> Unit) {
 
-    val dismissState = viewModel.dismissBanner.observeAsState()
+    val dismissState = viewModel.openFilter.observeAsState()
+
+    val currentFilter = viewModel.currentAgeFilter.observeAsState()
 
     val dismissValue = remember {
-        mutableStateOf(false)
+        mutableStateOf(true)
     }
 
     dismissState.value?.consume {
         dismissValue.value = it.data
     }
 
-    AnimatedVisibility(visible = !dismissValue.value) {
-
+    AnimatedVisibility(visible = dismissValue.value) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,7 +52,7 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
                     .padding(16.dp)
             ) {
                 Text(
-                    text = "Looking for specific pin code in this district?",
+                    text = "Filter by age",
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 4.dp),
@@ -69,41 +64,55 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
 
                 Spacer(Modifier.height(12.dp))
 
-                val textState = remember { mutableStateOf("") }
+                val radioOptions = listOf("18+", "45+", "all")
 
-                val keyboardController = LocalSoftwareKeyboardController.current
+                val index = when (currentFilter.value) {
+                    null -> 2
+                    "18+" -> 0
+                    "45+" -> 1
+                    else -> 2
+                }
+                val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[index]) }
 
-                TextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    value = textState.value,
-                    placeholder = {
-                        Text(text = "Please enter your pin-code")
-                    },
-                    onValueChange = { textState.value = it },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Sharp.Search,
-                            tint = colorResource(id = R.color.ripple_material_light),
-                            contentDescription = "search"
-                        )
-                    },
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.body1,
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Done,
-                    ),
-                    keyboardActions = KeyboardActions(onDone = {
-                        keyboardController?.hideSoftwareKeyboard()
-                    }),
-                    colors = TextFieldDefaults.textFieldColors(
-                        backgroundColor = MaterialTheme.colors.background,
-                        focusedIndicatorColor = Color.Gray,
-                        unfocusedIndicatorColor = Color.LightGray,
-                        cursorColor = MaterialTheme.colors.primary
-                    )
-                )
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    radioOptions.forEach { text ->
+                        Row(
+                            Modifier
+
+                                .wrapContentWidth()
+
+                                .selectable(
+
+                                    selected = (text == selectedOption),
+
+                                    onClick = { onOptionSelected(text) }
+                                )
+
+                                .padding(horizontal = 8.dp)
+                        ) {
+
+                            RadioButton(
+
+                                selected = (text == selectedOption),
+                                modifier = Modifier,
+                                colors = RadioButtonDefaults.colors(
+                                    unselectedColor = Color.Gray,
+                                    selectedColor = Color.Black
+                                ),
+                                onClick = {
+
+                                }
+                            )
+
+                            Text(
+                                style = TextStyle(color = Color.Black),
+                                text = text.capitalize(Locale.ROOT),
+                                modifier = Modifier.padding(start = 16.dp)
+                            )
+                        }
+                    }
+                }
+
                 Spacer(Modifier.height(12.dp))
                 Row(modifier = Modifier.fillMaxWidth()) {
 
@@ -121,7 +130,7 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
                     }
                     Button(
                         onClick = {
-                            onSave(textState.value)
+                            onSave(selectedOption)
                         },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -139,6 +148,4 @@ fun FloatingBanner(viewModel: DashboardViewModel, onDismiss: () -> Unit, onSave:
             }
         }
     }
-
-
 }

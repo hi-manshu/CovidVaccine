@@ -17,8 +17,13 @@ import com.himanshoe.dashboard.ui.DashboardViewModel
 import java.util.*
 
 @Composable
-fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double, Double>) -> Unit) {
+fun LocationList(
+    viewModel: DashboardViewModel,
+    onMapLocationFetch: (Pair<Double, Double>) -> Unit
+) {
     val searchQuery = viewModel.searchQuery.observeAsState()
+
+    val ageFilter = viewModel.currentAgeFilter.observeAsState()
 
     val locations = viewModel.vaccineLocationResponse.observeAsState()
 
@@ -26,9 +31,12 @@ fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double
 
     val textState = remember { mutableStateOf(centers) }
 
-    val locationList = getFilteredList(searchQuery.value, centers ?: emptyList())
+    val locationList = getFilteredList(searchQuery.value, centers)
 
-    textState.value = locationList
+    val filterListByAge = filterListByAge(locationList, ageFilter.value)
+
+    textState.value = filterListByAge
+
     if (textState.value.isNotEmpty()) {
         LazyColumn(
             modifier = Modifier
@@ -36,7 +44,7 @@ fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double
         ) {
             items(items = textState.value.sortedBy {
                 it.name
-            } ?: emptyList(), key = null, {
+            }, key = null, {
                 LocationItem(it, onMapLocationFetch)
             })
         }
@@ -48,6 +56,22 @@ fun LocationList(viewModel: DashboardViewModel, onMapLocationFetch: (Pair<Double
         ) {
             CircularProgressIndicator()
         }
+    }
+}
+
+fun filterListByAge(locationList: List<Center>, value: String?): List<Center> {
+    return if (!value.isNullOrEmpty()) {
+        locationList.filter { center ->
+            center.sessions.any {
+                when (value) {
+                    "45+" -> it.minAgeLimit == 45
+                    "18+" -> it.minAgeLimit == 18
+                    else -> it.minAgeLimit >= 18
+                }
+            }
+        }
+    } else {
+        locationList
     }
 }
 
