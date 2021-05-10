@@ -161,7 +161,6 @@ private fun DeveloperItem() {
             color = Color.Black,
             fontWeight = FontWeight.SemiBold
         )
-        Divider(Modifier.height(1.dp))
 
         Spacer(Modifier.height(10.dp))
 
