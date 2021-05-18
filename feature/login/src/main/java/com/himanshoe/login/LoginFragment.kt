@@ -23,7 +23,8 @@ class LoginFragment : BaseFragment() {
 
     override fun setupObserver() {
         viewModel.loginWithOtpResponse.observe(viewLifecycleOwner, {
-            viewModel.setupUser(it)
+            if (it.token.isNotEmpty())
+                viewModel.setupUser(it)
         })
     }
 

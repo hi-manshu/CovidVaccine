@@ -39,4 +39,10 @@ interface SessionManager {
     suspend fun isBannerDismissed(): Boolean
 
     suspend fun saveToken(token: String)
+
+    suspend fun savePhone(phone: String)
+
+    suspend fun getPhone(): String
+
+    suspend fun isLoggedIn(): Boolean
 }

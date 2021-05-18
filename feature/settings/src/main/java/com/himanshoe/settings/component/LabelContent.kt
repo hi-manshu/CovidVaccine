@@ -23,8 +23,9 @@ fun LabelContent(
     onLoginClick: () -> Unit
 ) {
     val locationState = settingsViewModel.location.observeAsState()
-    val phoneNumber = settingsViewModel.number.observeAsState()
+    val phoneNumber = settingsViewModel.phoneNumber .observeAsState()
     val districtPinCode = settingsViewModel.districtPinCode.observeAsState()
+    val phone = settingsViewModel.districtPinCode.observeAsState()
 
     Column(
         modifier = Modifier

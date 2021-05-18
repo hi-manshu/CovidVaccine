@@ -21,6 +21,7 @@ class AppDataStore {
         const val ONBOARDING = "onboarding"
         const val BANNER_DISMISS = "banner"
         const val TOKEN = "token"
+        const val PHONE = "phone"
         const val PIN_CODE = "pincode"
 
         fun getBoolean(

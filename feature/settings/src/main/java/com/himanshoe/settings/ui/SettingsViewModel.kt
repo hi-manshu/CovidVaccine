@@ -20,17 +20,18 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     networkHelper: NetworkHelper,
     private val sessionManager: SessionManager
-) :
-    BaseViewModel(networkHelper) {
+) : BaseViewModel(networkHelper) {
 
     val navigator = Navigator()
+
+    private val _phoneNumber = MutableLiveData<String?>()
+    val phoneNumber: LiveData<String?>
+        get() = _phoneNumber
 
     private val _location = MutableLiveData<String?>()
     val location: LiveData<String?>
         get() = _location
-    private val _number = MutableLiveData<String?>()
-    val number: LiveData<String?>
-        get() = _number
+
 
     private val _districtPinCode = MutableLiveData<String>()
     val districtPinCode: LiveData<String>
@@ -83,6 +84,15 @@ class SettingsViewModel @Inject constructor(
 
     fun openLogin() {
         navigator.navigate(deepLinkToLogin())
+    }
 
+    init {
+        setupInit()
+    }
+
+    private fun setupInit() {
+        viewModelScope.launch {
+            _phoneNumber.postValue(sessionManager.getPhone())
+        }
     }
 }

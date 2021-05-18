@@ -81,11 +81,18 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
         return AppDataStore.setString(context, AppDataStore.TOKEN, "Bearer $token")
     }
 
+    override suspend fun savePhone(phone: String) {
+        AppDataStore.setString(context, AppDataStore.PHONE, phone)
+    }
+    override suspend fun getPhone():String {
+        return AppDataStore.getString(context, AppDataStore.PHONE)
+    }
+
     override suspend fun getToken(): String {
         return AppDataStore.getString(context, AppDataStore.TOKEN)
     }
 
-    override suspend fun isLoggedId(): Boolean {
+    override suspend fun isLoggedIn(): Boolean {
         return AppDataStore.getString(context, AppDataStore.TOKEN).isNotEmpty()
     }
 
