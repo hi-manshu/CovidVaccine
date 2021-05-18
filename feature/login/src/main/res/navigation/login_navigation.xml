@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.himanshoe.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment">
         <deepLink app:uri="covid://login" />
     </fragment>
 </navigation>

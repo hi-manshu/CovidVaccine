@@ -28,7 +28,7 @@ class SettingsViewModel @Inject constructor(
     private val _location = MutableLiveData<String?>()
     val location: LiveData<String?>
         get() = _location
- private val _number = MutableLiveData<String?>()
+    private val _number = MutableLiveData<String?>()
     val number: LiveData<String?>
         get() = _number
 

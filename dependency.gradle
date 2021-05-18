@@ -25,7 +25,7 @@ ext {
             material          : "com.google.android.material:material:1.2.1",
             recyclerView      : "androidx.recyclerview:recyclerview:1.2.0-alpha04",
             shimer            : "com.facebook.shimmer:shimmer:0.1.0@aar",
-            lottie              : "com.airbnb.android:lottie-compose:$lottieVersion",
+            lottie            : "com.airbnb.android:lottie-compose:$lottieVersion",
     ]
     kotlinLibrary = [
             stdlib: "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

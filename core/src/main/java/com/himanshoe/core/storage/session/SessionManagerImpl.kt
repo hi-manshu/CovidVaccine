@@ -42,7 +42,7 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
     }
 
     override suspend fun getAgeFilter(): String {
-        return AppDataStore.getString(context, AppDataStore.AGE,"all")
+        return AppDataStore.getString(context, AppDataStore.AGE, "all")
     }
 
     override suspend fun getDistrictId(): Int {
@@ -75,6 +75,18 @@ class SessionManagerImpl @Inject constructor(@ApplicationContext private val con
 
     override suspend fun isBannerDismissed(): Boolean {
         return AppDataStore.getBoolean(context, AppDataStore.BANNER_DISMISS)
+    }
+
+    override suspend fun saveToken(token: String) {
+        return AppDataStore.setString(context, AppDataStore.TOKEN, "Bearer $token")
+    }
+
+    override suspend fun getToken(): String {
+        return AppDataStore.getString(context, AppDataStore.TOKEN)
+    }
+
+    override suspend fun isLoggedId(): Boolean {
+        return AppDataStore.getString(context, AppDataStore.TOKEN).isNotEmpty()
     }
 
 }

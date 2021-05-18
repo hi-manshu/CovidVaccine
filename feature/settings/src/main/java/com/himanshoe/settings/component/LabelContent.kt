@@ -32,7 +32,7 @@ fun LabelContent(
     ) {
         LocationItem(locationState, onLocationClick)
         DistrictItem(districtPinCode, onPinCodeClick)
-        LoginItem(phoneNumber,onLoginClick)
+        LoginItem(phoneNumber, onLoginClick)
         DeveloperItem()
     }
 }

@@ -20,6 +20,7 @@ class AppDataStore {
         const val DISTRICT_NAME = "district-name"
         const val ONBOARDING = "onboarding"
         const val BANNER_DISMISS = "banner"
+        const val TOKEN = "token"
         const val PIN_CODE = "pincode"
 
         fun getBoolean(

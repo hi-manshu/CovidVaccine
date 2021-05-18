@@ -4,13 +4,15 @@ interface SessionManager {
 
     suspend fun saveStateId(stateId: Int)
 
-    suspend fun saveStateName(name:String)
+    suspend fun saveStateName(name: String)
 
-    suspend fun saveDistrictName(name:String)
+    suspend fun saveDistrictName(name: String)
 
     suspend fun getStateId(): Int
 
     suspend fun getStateName(): String
+
+    suspend fun getToken(): String
 
     suspend fun getDistrictName(): String
 
@@ -18,21 +20,23 @@ interface SessionManager {
 
     suspend fun saveAgeFilter(age: String)
 
-    suspend fun getAgeFilter():String
+    suspend fun getAgeFilter(): String
 
     suspend fun getDistrictId(): Int
 
-    suspend fun isOnboardingDone(status:Boolean)
+    suspend fun isOnboardingDone(status: Boolean)
 
-    suspend fun isOnboardingDone():Boolean
+    suspend fun isOnboardingDone(): Boolean
 
-    suspend fun getCurrentDate():String
+    suspend fun getCurrentDate(): String
 
     suspend fun dismissBanner()
 
-    suspend fun savePinCodeForDistrict(pinCode:String)
+    suspend fun savePinCodeForDistrict(pinCode: String)
 
-    suspend fun getPinCodeForDistrict():String
+    suspend fun getPinCodeForDistrict(): String
 
-    suspend fun isBannerDismissed() :Boolean
+    suspend fun isBannerDismissed(): Boolean
+
+    suspend fun saveToken(token: String)
 }

@@ -11,6 +11,7 @@ import com.himanshoe.core.base.BaseFragment
 import com.himanshoe.login.component.LoginToolbar
 import com.himanshoe.login.component.MobileInput
 import com.himanshoe.login.data.LoginRequest
+import com.himanshoe.login.data.OtpRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
@@ -21,7 +22,9 @@ class LoginFragment : BaseFragment() {
     private val viewModel by viewModels<LoginViewModel>()
 
     override fun setupObserver() {
-
+        viewModel.loginWithOtpResponse.observe(viewLifecycleOwner, {
+            viewModel.setupUser(it)
+        })
     }
 
     override fun init() {
@@ -39,9 +42,11 @@ class LoginFragment : BaseFragment() {
                     }
                 }
             }) {
-                MobileInput {number->
-                    viewModel.doLogin(LoginRequest(number.toString()) )
-                }
+            MobileInput(viewModel, { number ->
+                viewModel.doLogin(LoginRequest(number.toString()))
+            }, { otp, txnId ->
+                viewModel.authenticateUsingOtp(OtpRequest(otp, txnId))
+            })
         }
     }
 

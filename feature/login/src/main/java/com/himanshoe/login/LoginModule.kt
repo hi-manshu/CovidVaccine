@@ -17,6 +17,7 @@ class LoginModule {
     fun provideLoginApiService(retrofit: Retrofit): LoginApiService {
         return retrofit.create(LoginApiService::class.java)
     }
+
     @Provides
     fun provideLoginRepository(loginRepositoryImpl: LoginRepositoryImpl): LoginRepository {
         return loginRepositoryImpl

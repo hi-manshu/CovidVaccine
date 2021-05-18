@@ -12,4 +12,10 @@ interface LoginApiService {
     suspend fun doLogin(
         @Body loginRequest: LoginRequest
     ): Response<LoginResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("/api/v2/auth/public/confirmOTP")
+    suspend fun doLoginWithOtp(
+        @Body otpRequest: OtpRequest
+    ): Response<OtpResponse>
 }
