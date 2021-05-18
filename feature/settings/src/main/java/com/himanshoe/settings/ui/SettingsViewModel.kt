@@ -9,6 +9,7 @@ import com.himanshoe.core.navigation.Navigator
 import com.himanshoe.core.navigation.event.Event
 import com.himanshoe.core.storage.session.SessionManager
 import com.himanshoe.core.util.NetworkHelper
+import com.himanshoe.settings.util.deepLinkToLogin
 import com.himanshoe.settings.util.deepLinkToState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -27,6 +28,9 @@ class SettingsViewModel @Inject constructor(
     private val _location = MutableLiveData<String?>()
     val location: LiveData<String?>
         get() = _location
+ private val _number = MutableLiveData<String?>()
+    val number: LiveData<String?>
+        get() = _number
 
     private val _districtPinCode = MutableLiveData<String>()
     val districtPinCode: LiveData<String>
@@ -75,5 +79,10 @@ class SettingsViewModel @Inject constructor(
         } else {
             _error.postValue(Event("Please enter a correct pin code"))
         }
+    }
+
+    fun openLogin() {
+        navigator.navigate(deepLinkToLogin())
+
     }
 }

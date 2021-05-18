@@ -15,3 +15,15 @@ private fun navigateToState(): NavigateTo.DeepLink {
 }
 
 fun deepLinkToState() = navigateToState()
+
+private fun navigateToLogin(): NavigateTo.DeepLink {
+
+    return NavigateTo.DeepLink(
+        "covid://login",
+        navOptions {
+            fadeAnimation()
+        }
+    )
+}
+
+fun deepLinkToLogin() = navigateToLogin()

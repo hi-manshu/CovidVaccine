@@ -19,18 +19,58 @@ import com.himanshoe.settings.ui.SettingsViewModel
 fun LabelContent(
     settingsViewModel: SettingsViewModel,
     onLocationClick: () -> Unit,
-    onPinCodeClick: () -> Unit
+    onPinCodeClick: () -> Unit,
+    onLoginClick: () -> Unit
 ) {
     val locationState = settingsViewModel.location.observeAsState()
+    val phoneNumber = settingsViewModel.number.observeAsState()
     val districtPinCode = settingsViewModel.districtPinCode.observeAsState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-
     ) {
         LocationItem(locationState, onLocationClick)
         DistrictItem(districtPinCode, onPinCodeClick)
+        LoginItem(phoneNumber,onLoginClick)
         DeveloperItem()
+    }
+}
+
+@Composable
+fun LoginItem(phoneNumber: State<String?>, onLoginClick: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onLoginClick()
+            }
+
+    ) {
+        Text(
+            text = "Login via mobile to download certificate",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, top = 16.dp, bottom = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.caption,
+            color = Color.Gray,
+            fontWeight = FontWeight.Normal
+        )
+        Spacer(Modifier.height(1.dp))
+
+        Text(
+            text = phoneNumber.value ?: "",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 16.dp, bottom = 16.dp, top = 2.dp),
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.body2,
+            color = Color.Black,
+            fontWeight = FontWeight.SemiBold
+        )
+        Divider(Modifier.height(1.dp))
+
     }
 }
 

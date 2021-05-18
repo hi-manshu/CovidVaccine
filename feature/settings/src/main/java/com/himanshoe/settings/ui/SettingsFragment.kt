@@ -57,6 +57,8 @@ class SettingsFragment : BaseFragment() {
                 viewModel.gotoStates()
             }, {
                 viewModel.showPinCode()
+            },{
+                viewModel.openLogin()
             })
 
         }
